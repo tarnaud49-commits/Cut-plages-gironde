@@ -6,37 +6,37 @@ from datetime import datetime, timezone, timedelta
 import requests
 
 BEACHES = {
-    "verdon": {"nom": "Le Verdon (Pointe de Grave)", "lat": 45.568, "lon": -1.085, "berme": 2.90, "dune": 4.20, "orient": 285},
-    "soulac": {"nom": "Soulac-sur-Mer", "lat": 45.515, "lon": -1.132, "berme": 2.85, "dune": 4.10, "orient": 282},
-    "amélie": {"nom": "Soulac (L'Amélie)", "lat": 45.485, "lon": -1.142, "berme": 2.85, "dune": 4.15, "orient": 281},
-    "montalivet": {"nom": "Vendays-Montalivet", "lat": 45.378, "lon": -1.161, "berme": 3.00, "dune": 4.45, "orient": 280},
-    "hourtin": {"nom": "Hourtin Plage", "lat": 45.221, "lon": -1.178, "berme": 3.10, "dune": 4.70, "orient": 278},
-    "carcans": {"nom": "Carcans Plage", "lat": 45.085, "lon": -1.192, "berme": 3.15, "dune": 4.80, "orient": 277},
-    "lacanau_lion": {"nom": "Lacanau — Le Lion", "lat": 45.035, "lon": -1.196, "berme": 3.10, "dune": 4.70, "orient": 276},
-    "lacanau_nord": {"nom": "Lacanau — Plage Nord", "lat": 45.016, "lon": -1.199, "berme": 3.05, "dune": 4.60, "orient": 276},
-    "lacanau_centrale": {"nom": "Lacanau — Plage Centrale", "lat": 45.002, "lon": -1.201, "berme": 3.00, "dune": 4.55, "orient": 276},
-    "lacanau_sud": {"nom": "Lacanau — Plage Sud", "lat": 44.991, "lon": -1.203, "berme": 3.05, "dune": 4.65, "orient": 276},
-    "lacanau_ecureuils": {"nom": "Lacanau — Les Écureuils", "lat": 44.978, "lon": -1.205, "berme": 3.10, "dune": 4.75, "orient": 276},
-    "lacanau_supersud": {"nom": "Lacanau — Super Sud", "lat": 44.962, "lon": -1.208, "berme": 3.15, "dune": 4.85, "orient": 275},
-    "lacanau_alexandre": {"nom": "Lacanau — La Alexandre", "lat": 44.938, "lon": -1.211, "berme": 3.18, "dune": 4.95, "orient": 275},
-    "porge_gressier": {"nom": "Le Porge — Le Gressier", "lat": 44.915, "lon": -1.212, "berme": 3.20, "dune": 5.00, "orient": 275},
-    "porge_centrale": {"nom": "Le Porge — Plage Centrale", "lat": 44.892, "lon": -1.215, "berme": 3.20, "dune": 5.05, "orient": 275},
-    "porge_jenny": {"nom": "Le Porge — La Jenny", "lat": 44.862, "lon": -1.219, "berme": 3.18, "dune": 4.95, "orient": 275},
-    "grand_crohot": {"nom": "Lège — Le Grand Crohot", "lat": 44.812, "lon": -1.226, "berme": 3.15, "dune": 4.90, "orient": 275},
-    "truc_vert": {"nom": "Cap Ferret — Le Truc Vert", "lat": 44.738, "lon": -1.239, "berme": 3.10, "dune": 4.75, "orient": 274},
-    "garonne": {"nom": "Cap Ferret — La Garonne", "lat": 44.705, "lon": -1.245, "berme": 3.05, "dune": 4.65, "orient": 274},
-    "torchere": {"nom": "Cap Ferret — La Torchère", "lat": 44.675, "lon": -1.251, "berme": 3.00, "dune": 4.55, "orient": 273},
-    "horizon": {"nom": "Cap Ferret — L'Horizon", "lat": 44.645, "lon": -1.256, "berme": 2.95, "dune": 4.50, "orient": 272},
-    "dunes_ferret": {"nom": "Cap Ferret — Les Dunes", "lat": 44.622, "lon": -1.254, "berme": 2.90, "dune": 4.40, "orient": 272},
-    "pointe_ferret": {"nom": "Cap Ferret — La Pointe", "lat": 44.602, "lon": -1.248, "berme": 2.80, "dune": 4.25, "orient": 271},
-    "petit_nice": {"nom": "Pyla-sur-Mer — Le Petit Nice", "lat": 44.572, "lon": -1.226, "berme": 2.80, "dune": 4.25, "orient": 270},
-    "la_lagune": {"nom": "Pyla-sur-Mer — La Lagune", "lat": 44.552, "lon": -1.233, "berme": 2.85, "dune": 4.35, "orient": 270},
-    "salie_nord": {"nom": "La Teste — La Salie Nord", "lat": 44.532, "lon": -1.240, "berme": 2.90, "dune": 4.40, "orient": 271},
-    "salie_sud": {"nom": "La Teste — La Salie Sud", "lat": 44.512, "lon": -1.245, "berme": 2.95, "dune": 4.45, "orient": 272},
-    "biscarrosse": {"nom": "Biscarrosse Plage", "lat": 44.448, "lon": -1.254, "berme": 3.05, "dune": 4.60, "orient": 273}
+    "verdon": {"nom": "Le Verdon (Pointe de Grave)", "lat": 45.568, "lon": -1.085, "berme": 2.90, "dune": 4.20, "orient": 285, "port": "verdon"},
+    "soulac": {"nom": "Soulac-sur-Mer", "lat": 45.515, "lon": -1.132, "berme": 2.85, "dune": 4.10, "orient": 282, "port": "verdon"},
+    "amélie": {"nom": "Soulac (L'Amélie)", "lat": 45.485, "lon": -1.142, "berme": 2.85, "dune": 4.15, "orient": 281, "port": "verdon"},
+    "montalivet": {"nom": "Vendays-Montalivet", "lat": 45.378, "lon": -1.161, "berme": 3.00, "dune": 4.45, "orient": 280, "port": "verdon"},
+    "hourtin": {"nom": "Hourtin Plage", "lat": 45.221, "lon": -1.178, "berme": 3.10, "dune": 4.70, "orient": 278, "port": "ferret"},
+    "carcans": {"nom": "Carcans Plage", "lat": 45.085, "lon": -1.192, "berme": 3.15, "dune": 4.80, "orient": 277, "port": "ferret"},
+    "lacanau_lion": {"nom": "Lacanau — Le Lion", "lat": 45.035, "lon": -1.196, "berme": 3.10, "dune": 4.70, "orient": 276, "port": "ferret"},
+    "lacanau_nord": {"nom": "Lacanau — Plage Nord", "lat": 45.016, "lon": -1.199, "berme": 3.05, "dune": 4.60, "orient": 276, "port": "ferret"},
+    "lacanau_centrale": {"nom": "Lacanau — Plage Centrale", "lat": 45.002, "lon": -1.201, "berme": 3.00, "dune": 4.55, "orient": 276, "port": "ferret"},
+    "lacanau_sud": {"nom": "Lacanau — Plage Sud", "lat": 44.991, "lon": -1.203, "berme": 3.05, "dune": 4.65, "orient": 276, "port": "ferret"},
+    "lacanau_ecureuils": {"nom": "Lacanau — Les Écureuils", "lat": 44.978, "lon": -1.205, "berme": 3.10, "dune": 4.75, "orient": 276, "port": "ferret"},
+    "lacanau_supersud": {"nom": "Lacanau — Super Sud", "lat": 44.962, "lon": -1.208, "berme": 3.15, "dune": 4.85, "orient": 275, "port": "ferret"},
+    "lacanau_alexandre": {"nom": "Lacanau — La Alexandre", "lat": 44.938, "lon": -1.211, "berme": 3.18, "dune": 4.95, "orient": 275, "port": "ferret"},
+    "porge_gressier": {"nom": "Le Porge — Le Gressier", "lat": 44.915, "lon": -1.212, "berme": 3.20, "dune": 5.00, "orient": 275, "port": "ferret"},
+    "porge_centrale": {"nom": "Le Porge — Plage Centrale", "lat": 44.892, "lon": -1.215, "berme": 3.20, "dune": 5.05, "orient": 275, "port": "ferret"},
+    "porge_jenny": {"nom": "Le Porge — La Jenny", "lat": 44.862, "lon": -1.219, "berme": 3.18, "dune": 4.95, "orient": 275, "port": "ferret"},
+    "grand_crohot": {"nom": "Lège — Le Grand Crohot", "lat": 44.812, "lon": -1.226, "berme": 3.15, "dune": 4.90, "orient": 275, "port": "ferret"},
+    "truc_vert": {"nom": "Cap Ferret — Le Truc Vert", "lat": 44.738, "lon": -1.239, "berme": 3.10, "dune": 4.75, "orient": 274, "port": "ferret"},
+    "garonne": {"nom": "Cap Ferret — La Garonne", "lat": 44.705, "lon": -1.245, "berme": 3.05, "dune": 4.65, "orient": 274, "port": "ferret"},
+    "torchere": {"nom": "Cap Ferret — La Torchère", "lat": 44.675, "lon": -1.251, "berme": 3.00, "dune": 4.55, "orient": 273, "port": "ferret"},
+    "horizon": {"nom": "Cap Ferret — L'Horizon", "lat": 44.645, "lon": -1.256, "berme": 2.95, "dune": 4.50, "orient": 272, "port": "ferret"},
+    "dunes_ferret": {"nom": "Cap Ferret — Les Dunes", "lat": 44.622, "lon": -1.254, "berme": 2.90, "dune": 4.40, "orient": 272, "port": "ferret"},
+    "pointe_ferret": {"nom": "Cap Ferret — La Pointe", "lat": 44.602, "lon": -1.248, "berme": 2.80, "dune": 4.25, "orient": 271, "port": "ferret"},
+    "petit_nice": {"nom": "Pyla-sur-Mer — Le Petit Nice", "lat": 44.572, "lon": -1.226, "berme": 2.80, "dune": 4.25, "orient": 270, "port": "arcachon"},
+    "la_lagune": {"nom": "Pyla-sur-Mer — La Lagune", "lat": 44.552, "lon": -1.233, "berme": 2.85, "dune": 4.35, "orient": 270, "port": "arcachon"},
+    "salie_nord": {"nom": "La Teste — La Salie Nord", "lat": 44.532, "lon": -1.240, "berme": 2.90, "dune": 4.40, "orient": 271, "port": "arcachon"},
+    "salie_sud": {"nom": "La Teste — La Salie Sud", "lat": 44.512, "lon": -1.245, "berme": 2.95, "dune": 4.45, "orient": 272, "port": "arcachon"},
+    "biscarrosse": {"nom": "Biscarrosse Plage", "lat": 44.448, "lon": -1.254, "berme": 3.05, "dune": 4.60, "orient": 273, "port": "arcachon"}
 }
 def fetch_json_retry(url, headers=None, retries=3):
-    req_headers = {"User-Agent": "Observatoire-Littoral-Gironde/2.0"}
+    req_headers = {"User-Agent": "Observatoire-Littoral-Gironde/3.0"}
     if headers:
         req_headers.update(headers)
     for attempt in range(retries):
@@ -46,29 +46,38 @@ def fetch_json_retry(url, headers=None, retries=3):
             return resp.json()
         except Exception as e:
             print(f"Tentative {attempt + 1}/{retries} échouée : {e}")
-            time.sleep(2 * (attempt + 1))
+            time.sleep(1.5 * (attempt + 1))
     return None
 
-def get_accurate_tide(dt_utc):
-    nm_ref = datetime(2026, 1, 18, 19, 52, tzinfo=timezone.utc)
-    per_ref = datetime(2026, 1, 1, 21, 44, tzinfo=timezone.utc)
-    syn = 29.530588853
-    anom = 27.55454988
+def get_accurate_tide(dt_utc, port="ferret"):
+    y, m = dt_utc.year, dt_utc.month
+    d = dt_utc.day + (dt_utc.hour + dt_utc.minute / 60.0) / 24.0
+    if m <= 2:
+        y -= 1
+        m += 12
+    A = y // 100
+    B = 2 - A + (A // 4)
+    jd = int(365.25 * (y + 4716)) + int(30.6001 * (m + 1)) + d + B - 1524.5 - 1.22
 
-    days_nm = (dt_utc - nm_ref).total_seconds() / 86400.0
-    phase_syn = 2.0 * math.pi * ((days_nm - 1.5) / (syn / 2.0))
+    T = (jd - 2451545.0) / 36525.0
+    D = math.radians((297.8501921 + 445267.1114034 * T) % 360)
+    M = math.radians((357.5291092 + 35999.0502909 * T) % 360)
+    Mp = math.radians((134.9633964 + 477198.8675055 * T) % 360)
+    F = math.radians((93.2720950 + 483202.0175233 * T) % 360)
 
-    days_per = (dt_utc - per_ref).total_seconds() / 86400.0
-    phase_anom = 2.0 * math.pi * ((days_per - 1.5) / anom)
-
-    doy = dt_utc.timetuple().tm_yday
-    decl_factor = math.cos(2.0 * math.pi * (doy - 80) / 182.625)
-
-    amp = 32.0 + 7.5 * math.cos(phase_anom) + 5.5 * decl_factor
-    coeff = int(round(71.0 + amp * math.cos(phase_syn)))
+    ratio = 1.0 + 0.16 * math.cos(Mp) + 0.04 * math.cos(M) + 0.09 * math.cos(2 * F)
+    coeff = int(round(71.5 + 21.8 * ratio * math.cos(2 * D)))
     coeff = max(20, min(120, coeff))
 
-    pm_ngf = round(1.80 + (coeff - 20) * (1.30 / 100.0), 2)
+    if port == "verdon":
+        hauteur_zh = 3.25 + (coeff - 20) * (2.05 / 100.0)
+        pm_ngf = round(hauteur_zh - 2.75, 2)
+    elif port == "arcachon":
+        hauteur_zh = 2.68 + (coeff - 20) * (1.62 / 100.0)
+        pm_ngf = round(hauteur_zh - 2.10, 2)
+    else:
+        hauteur_zh = 2.65 + (coeff - 20) * (1.58 / 100.0)
+        pm_ngf = round(hauteur_zh - 2.15, 2)
     return coeff, pm_ngf
 
 def send_email_alert(alerts_list):
@@ -99,32 +108,19 @@ def send_email_alert(alerts_list):
 def main():
     now = datetime.now(timezone.utc)
     dates = [(now + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
-
-    zones_coords = {}
-    for key, info in BEACHES.items():
-        z_key = f"{round(info['lat'], 1)}_{round(info['lon'], 1)}"
-        if z_key not in zones_coords:
-            zones_coords[z_key] = {"lat": info["lat"], "lon": info["lon"], "marine": None, "weather": None}
-
-    for z_key, z_data in zones_coords.items():
-        m_url = f"https://open-meteo.com{z_data['lat']}&longitude={z_data['lon']}&hourly=wave_height,wave_period,wave_direction&forecast_days=7&timezone=Europe%2FParis"
-        w_url = f"https://open-meteo.com{z_data['lat']}&longitude={z_data['lon']}&hourly=wind_speed_10m,wind_direction_10m,surface_pressure&forecast_days=7&timezone=Europe%2FParis"
-        z_data["marine"] = fetch_json_retry(m_url)
-        z_data["weather"] = fetch_json_retry(w_url)
-        time.sleep(0.3)
-
     beaches_output = {}
     alerts_48h = []
 
     for key, info in BEACHES.items():
-        z_key = f"{round(info['lat'], 1)}_{round(info['lon'], 1)}"
-        marine = zones_coords[z_key]["marine"]
-        weather = zones_coords[z_key]["weather"]
+        m_url = f"https://open-meteo.com{info['lat']}&longitude={info['lon']}&hourly=wave_height,wave_period,wave_direction&forecast_days=7&timezone=Europe%2FParis"
+        w_url = f"https://open-meteo.com{info['lat']}&longitude={info['lon']}&hourly=wind_speed_10m,wind_direction_10m,surface_pressure&forecast_days=7&timezone=Europe%2FParis"
+        marine = fetch_json_retry(m_url)
+        weather = fetch_json_retry(w_url)
         daily_list = []
 
         for day_idx, d_str in enumerate(dates):
             dt_day = now + timedelta(days=day_idx, hours=12)
-            coeff, pm_ngf = get_accurate_tide(dt_day)
+            coeff, pm_ngf = get_accurate_tide(dt_day, info["port"])
             h_slice = slice(day_idx * 24, (day_idx + 1) * 24)
 
             if marine and "hourly" in marine:
@@ -184,6 +180,7 @@ def main():
             })
 
         beaches_output[key] = daily_list
+        time.sleep(0.25)
 
     output = {
         "updated_at": now.strftime("%d/%m/%Y %H:%M UTC"),
@@ -191,7 +188,7 @@ def main():
     }
     with open("data_littoral.json", "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    print("Mise à jour terminée pour", len(beaches_output), "plages.")
+    print("Mise à jour individuelle terminée pour", len(beaches_output), "plages.")
     send_email_alert(alerts_48h)
 
 if __name__ == "__main__":
