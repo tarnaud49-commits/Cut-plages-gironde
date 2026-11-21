@@ -88,7 +88,7 @@ def send_email_alert(alerts_list):
         return
 
     payload = {
-        "sender": {"name": "Alerte Littoral Gironde", "email": "VOTRE_EMAIL_BREVO@exemple.fr"},
+        "sender": {"name": "Alerte Littoral Gironde", "email": "tarnaud49@gmail.com"},
         "to": [{"email": email_to}],
         "subject": f"⚠️ Vigilance Érosion Gironde ({len(alerts_list)} secteurs en alerte sous 48h)",
         "htmlContent": "<h3>Bulletin de vigilance morphodynamique (48h)</h3><ul>" +
