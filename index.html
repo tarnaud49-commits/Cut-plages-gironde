@@ -92,80 +92,52 @@
       </div>
     </aside>
   </div>
-
     <script>
-    const P = {
-      verdon: { n: "Le Verdon (Pointe de Grave)", s: "Pointe de Grave", f: "verdon", la: 45.568, lo: -1.085, b: 2.90, d: 4.20 },
-      soulac: { n: "Soulac-sur-Mer", s: "Soulac", f: "soulac", la: 45.515, lo: -1.132, b: 2.85, d: 4.10 },
-      "amélie": { n: "Soulac (L'Amélie)", s: "L'Amélie", f: "amélie", la: 45.485, lo: -1.142, b: 2.85, d: 4.15 },
-      montalivet: { n: "Vendays-Montalivet", s: "Montalivet", f: "montalivet", la: 45.378, lo: -1.161, b: 3.00, d: 4.45 },
-      hourtin: { n: "Hourtin Plage", s: "Hourtin", f: "hourtin", la: 45.221, lo: -1.178, b: 3.10, d: 4.70 },
-      carcans: { n: "Carcans Plage", s: "Carcans", f: "carcans", la: 45.085, lo: -1.192, b: 3.15, d: 4.80 },
-      lacanau_lion: { n: "Lacanau — Le Lion", s: "Le Lion", f: "lacanau", la: 45.035, lo: -1.196, b: 3.10, d: 4.70 },
-      lacanau_nord: { n: "Lacanau — Plage Nord", s: "Lacanau Nord", f: "lacanau", la: 45.016, lo: -1.199, b: 3.05, d: 4.60 },
-      lacanau_centrale: { n: "Lacanau — Plage Centrale", s: "Lacanau Centrale", f: "lacanau", la: 45.002, lo: -1.201, b: 3.00, d: 4.55 },
-      lacanau_sud: { n: "Lacanau — Plage Sud", s: "Lacanau Sud", f: "lacanau", la: 44.991, lo: -1.203, b: 3.05, d: 4.65 },
-      lacanau_ecureuils: { n: "Lacanau — Les Écureuils", s: "Les Écureuils", f: "lacanau", la: 44.978, lo: -1.205, b: 3.10, d: 4.75 },
-      lacanau_supersud: { n: "Lacanau — Super Sud", s: "Super Sud", f: "lacanau", la: 44.962, lo: -1.208, b: 3.15, d: 4.85 },
-      lacanau_alexandre: { n: "Lacanau — La Alexandre", s: "La Alexandre", f: "lacanau", la: 44.938, lo: -1.211, b: 3.18, d: 4.95 },
-      porge_gressier: { n: "Le Porge — Le Gressier", s: "Le Gressier", f: "leporge", la: 44.915, lo: -1.212, b: 3.20, d: 5.00 },
-      porge_centrale: { n: "Le Porge — Plage Centrale", s: "Le Porge Centrale", f: "leporge", la: 44.892, lo: -1.215, b: 3.20, d: 5.05 },
-      porge_jenny: { n: "Le Porge — La Jenny", s: "La Jenny", f: "leporge", la: 44.862, lo: -1.219, b: 3.18, d: 4.95 },
-      grand_crohot: { n: "Lège — Le Grand Crohot", s: "Grand Crohot", f: "lege", la: 44.812, lo: -1.226, b: 3.15, d: 4.90 },
-      truc_vert: { n: "Cap Ferret — Le Truc Vert", s: "Truc Vert", f: "lege", la: 44.738, lo: -1.239, b: 3.10, d: 4.75 },
-      garonne: { n: "Cap Ferret — La Garonne", s: "La Garonne", f: "lege", la: 44.705, lo: -1.245, b: 3.05, d: 4.65 },
-      torchere: { n: "Cap Ferret — La Torchère", s: "La Torchère", f: "lege", la: 44.675, lo: -1.251, b: 3.00, d: 4.55 },
-      horizon: { n: "Cap Ferret — L'Horizon", s: "L'Horizon", f: "lege", la: 44.645, lo: -1.256, b: 2.95, d: 4.50 },
-      dunes_ferret: { n: "Cap Ferret — Les Dunes", s: "Les Dunes", f: "lege", la: 44.622, lo: -1.254, b: 2.90, d: 4.40 },
-      pointe_ferret: { n: "Cap Ferret — La Pointe", s: "La Pointe", f: "lege", la: 44.602, lo: -1.248, b: 2.80, d: 4.25 },
-      petit_nice: { n: "Pyla-sur-Mer — Le Petit Nice", s: "Le Petit Nice", f: "pilat", la: 44.572, lo: -1.226, b: 2.80, d: 4.25 },
-      la_lagune: { n: "Pyla-sur-Mer — La Lagune", s: "La Lagune", f: "pilat", la: 44.552, lo: -1.233, b: 2.85, d: 4.35 },
-      salie_nord: { n: "La Teste — La Salie Nord", s: "La Salie Nord", f: "pilat", la: 44.532, lo: -1.240, b: 2.90, d: 4.40 },
-      salie_sud: { n: "La Teste — La Salie Sud", s: "La Salie Sud", f: "pilat", la: 44.512, lo: -1.245, b: 2.95, d: 4.45 },
-      biscarrosse: { n: "Biscarrosse Plage", s: "Biscarrosse", f: "biscarrosse", la: 44.448, lo: -1.254, b: 3.05, d: 4.60 }
-    };
-    const Z = Array.of(
-      { id: "global", l: "Vue globale", v: "0 0 420 650" },
-      { id: "medoc", l: "Nord Médoc", v: "90 35 230 155" },
-      { id: "lacanau", l: "Lacanau (7)", v: "75 262 195 105" },
-      { id: "porge", l: "Le Porge (3)", v: "70 325 195 95" },
-      { id: "ferret", l: "Cap Ferret (7)", v: "55 385 205 140" },
-      { id: "pyla", l: "Pyla & Salie (4)", v: "65 475 195 100" },
-      { id: "bisca", l: "Biscarrosse", v: "65 535 195 100" }
-    );
-    let B = {}, D = Array.of(), day = 0, sel = "lacanau_centrale", zid = "global", vb = { x: 0, y: 0, w: 420, h: 650 };
-    function setViewBox(x, y, w, h, id) { vb = { x, y, w, h }; document.getElementById('coast-map').setAttribute('viewBox', `${x} ${y} ${w} ${h}`); if (id) { zid = id; drawZoom(); } drawPts(); }
-    function zoomStep(f) { const nw = Math.max(65, Math.min(420, vb.w * f)), nh = Math.max(95, Math.min(650, vb.h * f)); setViewBox(vb.x + (vb.w - nw)/2, vb.y + (vb.h - nh)/2, nw, nh, null); }
-    function getD(k, i) { const m = P[k], fk = Object.keys(B).slice(0,1).pop(), lk = B[k] ? k : (m && B[m.f] ? m.f : fk), a = B[lk] || Array.of(); return a.slice(i, i+1).pop() || a.slice(0,1).pop() || { hs: 1.8, tp: 10.5, waveDir: 280, wind: 20, coeff: 60, totalWater: 3.1, effectivePower: 35, status: "safe" }; }
-    function drawZoom() { const b = document.getElementById('zoom-bar'); b.innerHTML = ''; Z.forEach(z => { const bt = document.createElement('button'); bt.className = 'btn btn-zoom' + (z.id === zid ? ' active' : ''); bt.textContent = z.l; bt.onclick = () => { const p = z.v.split(' ').map(Number); setViewBox(p.slice(0,1).pop(), p.slice(1,2).pop(), p.slice(2,3).pop(), p.slice(3,4).pop(), z.id); }; b.appendChild(bt); }); }
-    function drawDates() { const b = document.getElementById('date-bar'); b.innerHTML = ''; D.forEach((d, i) => { const bt = document.createElement('button'); bt.className = 'btn' + (i === day ? ' active' : ''); const dt = new Date(d + 'T12:00:00'); bt.textContent = i === 0 ? "Aujourd'hui" : (isNaN(dt) ? d : dt.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })); bt.onclick = () => { day = i; drawDates(); drawPts(); drawDet(sel); }; b.appendChild(bt); }); }
-        function drawPts() {
-      const ns = "http" + "://www.w3.org" + "/2000/svg";
-      const g = document.getElementById('markers-group'); g.innerHTML = ''; const sc = vb.w / 420, rb = Math.max(1.7, 5*sc), fs = Math.max(3.4, 8.5*sc);
-      Object.keys(P).forEach(k => {
-        const m = P[k], pv = getD(k, day), x = Math.round((120 + ((m.lo + 1.28)/0.23)*80)*10)/10, y = Math.round((55 + ((45.58 - m.la)/1.16)*555)*10)/10;
-        const isD = pv.duneAttack || pv.status === 'dune', isC = !isD && (pv.cutEstran || pv.status === 'cut'), col = isD ? '#ef4444' : (isC ? '#38bdf8' : '#22c55e'), isS = k === sel;
-        const gr = document.createElementNS(ns, 'g'); gr.setAttribute('class', 'plage-point'); gr.onclick = () => { sel = k; drawPts(); drawDet(k); };
-        if (isD || isC) { const rg = document.createElementNS(ns, 'circle'); rg.setAttribute('cx', x); rg.setAttribute('cy', y); rg.setAttribute('r', rb*2.2); rg.setAttribute('fill', col); rg.setAttribute('class', 'pulse-ring'); gr.appendChild(rg); }
-        const c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', isS ? rb*1.35 : rb); c.setAttribute('fill', col); c.setAttribute('stroke', isS ? '#facc15' : '#fff'); c.setAttribute('stroke-width', Math.max(0.5, 1.3*sc)); gr.appendChild(c);
-        const t = document.createElementNS(ns, 'text'); t.setAttribute('x', x + rb*1.8); t.setAttribute('y', y + fs*0.35); t.setAttribute('fill', isS ? '#facc15' : '#f1f5f9'); t.setAttribute('font-size', fs); t.setAttribute('font-weight', isS ? '700' : '500'); t.textContent = m.s; gr.appendChild(t);
-        g.appendChild(gr);
+    const P = [
+      ["verdon","Pointe de Grave",45.568,-1.085,2.9,4.2],["soulac","Soulac",45.515,-1.132,2.85,4.1],
+      ["amélie","L'Amélie",45.485,-1.142,2.85,4.15],["montalivet","Montalivet",45.378,-1.161,3.0,4.45],
+      ["hourtin","Hourtin",45.221,-1.178,3.1,4.7],["carcans","Carcans",45.085,-1.192,3.15,4.8],
+      ["lacanau_lion","Le Lion",45.035,-1.196,3.1,4.7],["lacanau_nord","Lacanau Nord",45.016,-1.199,3.05,4.6],
+      ["lacanau_centrale","Lacanau Centrale",45.002,-1.201,3.0,4.55],["lacanau_sud","Lacanau Sud",44.991,-1.203,3.05,4.65],
+      ["lacanau_ecureuils","Les Écureuils",44.978,-1.205,3.1,4.75],["lacanau_supersud","Super Sud",44.962,-1.208,3.15,4.85],
+      ["lacanau_alexandre","La Alexandre",44.938,-1.211,3.18,4.95],["porge_gressier","Le Gressier",44.915,-1.212,3.2,5.0],
+      ["porge_centrale","Le Porge Centrale",44.892,-1.215,3.2,5.05],["porge_jenny","La Jenny",44.862,-1.219,3.18,4.95],
+      ["grand_crohot","Grand Crohot",44.812,-1.226,3.15,4.9],["truc_vert","Truc Vert",44.738,-1.239,3.1,4.75],
+      ["garonne","La Garonne",44.705,-1.245,3.05,4.65],["torchere","La Torchère",44.675,-1.251,3.0,4.55],
+      ["horizon","L'Horizon",44.645,-1.256,2.95,4.5],["dunes_ferret","Les Dunes",44.622,-1.254,2.9,4.4],
+      ["pointe_ferret","La Pointe",44.602,-1.248,2.8,4.25],["petit_nice","Le Petit Nice",44.572,-1.226,2.8,4.25],
+      ["la_lagune","La Lagune",44.552,-1.233,2.85,4.35],["salie_nord","La Salie Nord",44.532,-1.24,2.9,4.4],
+      ["salie_sud","La Salie Sud",44.512,-1.245,2.95,4.45],["biscarrosse","Biscarrosse",44.448,-1.254,3.05,4.6]
+    ];
+          const Z = [["global","Vue globale","0 0 420 650"],["medoc","Nord Médoc","90 35 230 155"],["lacanau","Lacanau (7)","75 262 195 105"],["porge","Le Porge (3)","70 325 195 95"],["ferret","Cap Ferret (7)","55 385 205 140"],["pyla","Pyla & Salie (4)","65 475 195 100"],["bisca","Biscarrosse","65 535 195 100"]];
+    let B = {}, D = [], day = 0, sel = "lacanau_centrale", zid = "global", vb =;
+    function setViewBox(x,y,w,h,id){ vb=[x,y,w,h]; document.getElementById('coast-map').setAttribute('viewBox',`${x} ${y} ${w} ${h}`); if(id){zid=id;drawZoom();} drawPts(); }
+    function zoomStep(f){ const nw=Math.max(65,Math.min(420,vb[2]*f)), nh=Math.max(95,Math.min(650,vb[3]*f)); setViewBox(vb[0]+(vb[2]-nw)/2,vb[1]+(vb[3]-nh)/2,nw,nh,null); }
+    function getD(k,i){ const a=B[k]||B.lacanau||[]; return a[i]||a[0]||{hs:1.8,tp:10.5,waveDir:280,wind:20,coeff:60,totalWater:3.1,effectivePower:35,status:"safe"}; }
+    function drawZoom(){ const b=document.getElementById('zoom-bar'); b.innerHTML=''; Z.forEach(z=>{ const bt=document.createElement('button'); bt.className='btn btn-zoom'+(z[0]===zid?' active':''); bt.textContent=z[1]; bt.onclick=()=>{ const p=z[2].split(' ').map(Number); setViewBox(p[0],p[1],p[2],p[3],z[0]); }; b.appendChild(bt); }); }
+    function drawDates(){ const b=document.getElementById('date-bar'); b.innerHTML=''; D.forEach((d,i)=>{ const bt=document.createElement('button'); bt.className='btn'+(i===day?' active':''); const dt=new Date(d+'T12:00:00'); bt.textContent=i===0?"Aujourd'hui":(isNaN(dt)?d:dt.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'})); bt.onclick=()=>{day=i;drawDates();drawPts();drawDet(sel);}; b.appendChild(bt); }); }
+    function drawPts(){
+      const g=document.getElementById('markers-group'); g.innerHTML=''; const sc=vb[2]/420, rb=Math.max(1.7,5*sc), fs=Math.max(3.4,8.5*sc);
+      P.forEach(p=>{
+        const pv=getD(p[0],day), x=(120+((p[3]+1.28)/0.23)*80).toFixed(1), y=(55+((45.58-p[2])/1.16)*555).toFixed(1);
+        const isD=pv.duneAttack||pv.status==='dune', isC=!isD&&(pv.cutEstran||pv.status==='cut'), col=isD?'#ef4444':(isC?'#38bdf8':'#22c55e'), isS=p[0]===sel;
+        const ring=(isD||isC)?`<circle cx="${x}" cy="${y}" r="${rb*2.2}" fill="${col}" class="pulse-ring"/>`:'';
+        g.insertAdjacentHTML('beforeend',`<g class="plage-point" onclick="sel='${p[0]}';drawPts();drawDet('${p[0]}')"><circle cx="${x}" cy="${y}" r="${isS?rb*1.35:rb}" fill="${col}" stroke="${isS?'#facc15':'#fff'}" stroke-width="${Math.max(0.5,1.3*sc)}"/>${ring}<text x="${Number(x)+rb*1.8}" y="${Number(y)+fs*0.35}" fill="${isS?'#facc15':'#f1f5f9'}" font-size="${fs}" font-weight="${isS?'700':'500'}">${p[1]}</text></g>`);
       });
     }
-    function drawDet(k) {
-      sel = P[k] ? k : "lacanau_centrale"; const m = P[sel], pv = getD(sel, day), isD = pv.duneAttack || pv.status === 'dune', isC = !isD && (pv.cutEstran || pv.status === 'cut');
-      let bg = `<span class="badge badge-safe">Profil stable</span>`, dg = "Houle et niveau d'eau sous les seuils critiques.";
-      if (isC) { bg = `<span class="badge badge-cut">🔵 Risque de CUT d'estran</span>`; dg = `Puissance effective (${pv.effectivePower} kW/m, houle + vent) : risque d'entaille sur la berme (+${m.b}m NGF).`; }
-      else if (isD) { bg = `<span class="badge badge-dune">🔴 ALERTE ATTAQUE PIED DE DUNE</span>`; dg = `Niveau d'eau max (+${pv.totalWater}m NGF) atteignant le pied de dune (+${m.d}m NGF).`; }
-      const wy = Math.max(20, Math.min(110, 115 - pv.totalWater*16)), by = 115 - m.b*16, dy = 115 - m.d*16;
-      document.getElementById('detail-card').innerHTML = `<h2>${m.n}</h2>${bg}<p style="font-size:0.82rem;color:#cbd5e1;line-height:1.4;">${dg}</p><div class="grid"><div class="metric"><label>Houle (Hs / Tp)</label><strong>${pv.hs} m / ${pv.tp} s</strong></div><div class="metric"><label>Dir. Houle / Vent</label><strong>${pv.waveDir}° / ${pv.wind} km/h</strong></div><div class="metric"><label>Coeff. Marée</label><strong>${pv.coeff}</strong></div><div class="metric"><label>Niveau d'eau max</label><strong>+${pv.totalWater} m NGF</strong></div><div class="metric"><label>Cote Berme</label><strong>+${m.b} m NGF</strong></div><div class="metric"><label>Pied de Dune</label><strong>+${m.d} m NGF</strong></div></div><div class="profile-box"><svg viewBox="0 0 300 130" style="width:100%;height:130px;"><rect x="0" y="${wy}" width="300" height="${130-wy}" fill="rgba(56,189,248,0.35)" /><line x1="0" y1="${wy}" x2="260" y2="${wy}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" /><polygon points="0,125 140,${by} 220,${dy} 260,15 300,15 300,130 0,130" fill="#d97706" opacity="0.85" /><text x="85" y="${by-6}" fill="#38bdf8" font-size="9">Berme +${m.b}m</text><text x="155" y="${dy-6}" fill="#f87171" font-size="9">Dune +${m.d}m</text><text x="8" y="${wy-4}" fill="#7dd3fc" font-size="9">Eau +${pv.totalWater}m</text></svg></div>`;
+          function drawDet(k){
+      const p=P.find(x=>x[0]===k)||P[0]; sel=p[0]; const pv=getD(sel,day), isD=pv.duneAttack||pv.status==='dune', isC=!isD&&(pv.cutEstran||pv.status==='cut');
+      let bg=`<span class="badge badge-safe">Profil stable</span>`, dg="Houle et niveau d'eau sous les seuils critiques.";
+      if(isC){bg=`<span class="badge badge-cut">🔵 Risque de CUT d'estran</span>`;dg=`Puissance effective (${pv.effectivePower} kW/m, houle + vent) : risque d'entaille sur la berme (+${p[4]}m NGF).`;}
+      else if(isD){bg=`<span class="badge badge-dune">🔴 ALERTE ATTAQUE PIED DE DUNE</span>`;dg=`Niveau d'eau max (+${pv.totalWater}m NGF) atteignant le pied de dune (+${p[5]}m NGF).`;}
+      const wy=Math.max(20,Math.min(110,115-pv.totalWater*16)), by=115-p[4]*16, dy=115-p[5]*16;
+      document.getElementById('detail-card').innerHTML=`<h2>${p[1]}</h2>${bg}<p style="font-size:0.82rem;color:#cbd5e1;line-height:1.4;">${dg}</p><div class="grid"><div class="metric"><label>Houle (Hs / Tp)</label><strong>${pv.hs} m / ${pv.tp} s</strong></div><div class="metric"><label>Dir. Houle / Vent</label><strong>${pv.waveDir}° / ${pv.wind} km/h</strong></div><div class="metric"><label>Coeff. Marée</label><strong>${pv.coeff}</strong></div><div class="metric"><label>Niveau d'eau max</label><strong>+${pv.totalWater} m NGF</strong></div><div class="metric"><label>Cote Berme</label><strong>+${p[4]} m NGF</strong></div><div class="metric"><label>Pied de Dune</label><strong>+${p[5]} m NGF</strong></div></div><div class="profile-box"><svg viewBox="0 0 300 130" style="width:100%;height:130px;"><rect x="0" y="${wy}" width="300" height="${130-wy}" fill="rgba(56,189,248,0.35)"/><line x1="0" y1="${wy}" x2="260" y2="${wy}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4"/><polygon points="0,125 140,${by} 220,${dy} 260,15 300,15 300,130 0,130" fill="#d97706" opacity="0.85"/><text x="85" y="${by-6}" fill="#38bdf8" font-size="9">Berme +${p[4]}m</text><text x="155" y="${dy-6}" fill="#f87171" font-size="9">Dune +${p[5]}m</text><text x="8" y="${wy-4}" fill="#7dd3fc" font-size="9">Eau +${pv.totalWater}m</text></svg></div>`;
     }
-    const td = new Date(); D = Array.from({length:7}, (_,i) => { const d = new Date(td); d.setDate(td.getDate()+i); return d.toISOString().slice(0,10); });
+    const td=new Date(); D=Array.from({length:7},(_,i)=>{const d=new Date(td);d.setDate(td.getDate()+i);return d.toISOString().slice(0,10);});
     drawZoom(); drawDates(); drawPts(); drawDet(sel);
-    fetch('data_littoral.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(raw => {
-      if (raw && raw.beaches) { B = raw.beaches; const fk = Object.keys(B).slice(0,1).pop(); if (fk && Array.isArray(B[fk])) D = B[fk].map(x => x.date); document.getElementById('update-info').textContent = `Mise à jour : ${raw.updated_at || 'OK'}`; drawDates(); drawPts(); drawDet(sel); }
-      else { document.getElementById('update-info').textContent = "Affichage actif"; }
-    }).catch(() => { document.getElementById('update-info').textContent = "Affichage actif"; });
+    fetch('data_littoral.json?t='+Date.now()).then(r=>r.ok?r.json():null).then(raw=>{if(raw&&raw.beaches){B=raw.beaches;const fk=Object.keys(B)[0];if(fk&&Array.isArray(B[fk]))D=B[fk].map(x=>x.date);document.getElementById('update-info').textContent=`Mise à jour : ${raw.updated_at||'OK'}`;drawDates();drawPts();drawDet(sel);}else{document.getElementById('update-info').textContent="Affichage actif";}}).catch(()=>{document.getElementById('update-info').textContent="Affichage actif";});
   </script>
 </body>
 </html>
+
+    
