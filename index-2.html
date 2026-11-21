@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi Érosion Côtière - Gironde & Nord Landes</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --safe: #10b981;
+            --cut: #f59e0b;
+            --dune: #ef4444;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        header { background-color: var(--card-bg); padding: 12px 20px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; z-index: 1000; }
+        .title-group h1 { font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+        .title-group p { font-size: 0.8rem; color: var(--text-muted); }
+        .date-selector { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+        .day-btn { background: #334155; color: var(--text-main); border: 1px solid #475569; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; white-space: nowrap; transition: all 0.2s; }
+        .day-btn:hover { background: #475569; }
+        .day-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); }
+        .main-container { display: flex; flex: 1; overflow: hidden; position: relative; }
+        #map { flex: 1.4; height: 100%; z-index: 1; }
+        .sidebar { flex: 1; max-width: 460px; background: var(--card-bg); border-left: 1px solid #334155; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+        .legend { display: flex; gap: 12px; font-size: 0.78rem; background: #0f172a; padding: 10px; border-radius: 8px; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+        .dot.safe { background: var(--safe); }
+        .dot.cut { background: var(--cut); box-shadow: 0 0 8px var(--cut); }
+        .dot.dune { background: var(--dune); box-shadow: 0 0 8px var(--dune); }
+        .card { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 14px; }
+        .card h2 { font-size: 1rem; margin-bottom: 8px; color: var(--accent); display: flex; justify-content: space-between; align-items: center; }
+        .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .badge.safe { background: rgba(16, 185, 129, 0.2); color: var(--safe); }
+        .badge.cut { background: rgba(245, 158, 11, 0.2); color: var(--cut); }
+        .badge.dune { background: rgba(239, 68, 68, 0.2); color: var(--dune); }
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+        .metric { background: #1e293b; padding: 10px; border-radius: 8px; }
+        .metric-label { font-size: 0.72rem; color: var(--text-muted); }
+        .metric-value { font-size: 1.05rem; font-weight: 700; margin-top: 2px; }
+        .status-banner { font-size: 0.75rem; padding: 6px 10px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.3); }
+        
+        /* Marqueurs clignotants */
+        .marker-pin { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #fff; }
+        .marker-safe { background-color: #10b981; }
+        .marker-cut { background-color: #f59e0b; animation: pulse-yellow 1.4s infinite; }
+        .marker-dune { background-color: #ef4444; animation: pulse-red 1s infinite; }
+        @keyframes pulse-yellow {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.85); transform: scale(1); }
+            70% { box-shadow: 0 0 0 14px rgba(245, 158, 11, 0); transform: scale(1.15); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); transform: scale(1); }
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.9); transform: scale(1); }
+            70% { box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); transform: scale(1.2); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); transform: scale(1); }
+        }
+        @media (max-width: 850px) {
+            body { overflow: auto; height: auto; }
+            .main-container { flex-direction: column; }
+            #map { height: 50vh; min-height: 340px; }
+            .sidebar { max-width: 100%; border-left: none; border-top: 1px solid #334155; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="title-group">
+        <h1>Observatoire Érosion Littorale — Gironde & Biscarrosse</h1>
+        <p id="subtitle">Prévisions à 7 jours : Cut d'estran & Attaque du pied de dune</p>
+    </div>
+    <div class="date-selector" id="dateSelector"></div>
+</header>
+
+<div class="main-container">
+    <div id="map"></div>
+    <div class="sidebar">
+        <div id="sourceBanner" class="status-banner">Chargement des données météo-marines...</div>
+        
+        <div class="legend">
+            <div class="legend-item"><span class="dot safe"></span> Stable</div>
+            <div class="legend-item"><span class="dot cut"></span> Cut d'estran (clignotant)</div>
+            <div class="legend-item"><span class="dot dune"></span> Attaque dune (clignotant)</div>
+        </div>
+
+        <div class="card" id="detailCard">
+            <h2>
+                <span id="beachName">Sélectionnez une plage</span>
+                <span class="badge safe" id="beachBadge">Stable</span>
+            </h2>
+            <p id="beachDesc" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.4;">
+                Cliquez sur un point de la carte pour inspecter les niveaux d'eau, l'énergie de la houle et les cotes LiDAR (berme et pied de dune).
+            </p>
+            <div class="metrics-grid" id="metricsGrid" style="display:none;">
+                <div class="metric">
+                    <div class="metric-label">Houle (Hauteur / Période)</div>
+                    <div class="metric-value" id="mWave">-</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Vent & Direction</div>
+                    <div class="metric-value" id="mWind">-</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Coeff. Marée / Niveau max</div>
+                    <div class="metric-value" id="mTide">-</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Cotes LiDAR (Berme / Dune)</div>
+                    <div class="metric-value" id="mLidar">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Évolution sur 7 jours (Niveau d'eau max)</h2>
+            <canvas id="forecastChart" height="170"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+const BEACHES = [
+    { id: "verdon", name: "Le Verdon-sur-Mer (Saint-Nicolas)", lat: 45.545, lon: -1.085, berme: 3.10, dune: 4.25, tideOffset: 0.15 },
+    { id: "soulac", name: "Soulac-sur-Mer (Plage Centrale)", lat: 45.512, lon: -1.132, berme: 2.95, dune: 4.10, tideOffset: 0.10 },
+    { id: "montalivet", name: "Vendays-Montalivet", lat: 45.378, lon: -1.162, berme: 3.15, dune: 4.45, tideOffset: 0.05 },
+    { id: "hourtin", name: "Hourtin Plage", lat: 45.222, lon: -1.178, berme: 3.25, dune: 4.70, tideOffset: 0.00 },
+    { id: "carcans", name: "Carcans Plage", lat: 45.085, lon: -1.192, berme: 3.30, dune: 4.80, tideOffset: -0.05 },
+    { id: "lacanau", name: "Lacanau Océan", lat: 45.002, lon: -1.203, berme: 3.20, dune: 4.65, tideOffset: -0.08 },
+    { id: "leporge", name: "Le Porge Océan", lat: 44.892, lon: -1.215, berme: 3.40, dune: 5.05, tideOffset: -0.10 },
+    { id: "trucvert", name: "Lège-Cap-Ferret (Le Truc Vert)", lat: 44.725, lon: -1.242, berme: 3.30, dune: 4.85, tideOffset: -0.12 },
+    { id: "horizon", name: "Cap Ferret (Plage de l'Horizon)", lat: 44.635, lon: -1.258, berme: 3.15, dune: 4.55, tideOffset: -0.15 },
+    { id: "petitnice", name: "La Teste (Le Petit Nice / Salie)", lat: 44.542, lon: -1.248, berme: 3.10, dune: 4.40, tideOffset: -0.15 },
+    { id: "biscarrosse", name: "Biscarrosse Plage", lat: 44.446, lon: -1.256, berme: 3.25, dune: 4.75, tideOffset: -0.18 }
+];
+
+let appData = null;
+let selectedDayIndex = 0;
+let selectedBeachId = "lacanau";
+let map = null;
+let markers = {};
+let chartInstance = null;
+
+function initMap() {
+    map = L.map('map').setView([45.00, -1.18], 9);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        maxZoom: 18
+    }).addTo(map);
+}
+
+function estimateHarmonicTide(dateStr) {
+    const d = new Date(dateStr + "T12:00:00Z");
+    const refNewMoon = new Date("2026-11-09T07:00:00Z");
+    const daysSince = (d - refNewMoon) / (1000 * 60 * 60 * 24);
+    const lunarCycle = (daysSince % 14.765) / 14.765;
+    const coeff = Math.round(45 + 65 * Math.abs(Math.cos(lunarCycle * Math.PI)));
+    const highWaterNGF = 1.65 + (coeff / 120) * 1.15;
+    return { coeff, highWaterNGF };
+}
+
+async function fetchFallbackOpenMeteo() {
+    const days = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+        const dt = new Date(today);
+        dt.setDate(today.getDate() + i);
+        days.push(dt.toISOString().split('T')[0]);
+    }
+
+    const marineUrl = "https://marine-api.open-meteo.com/v1/marine?latitude=45.00&longitude=-1.22&daily=wave_height_max,wave_period_max,wave_direction_dominant&timezone=Europe%2FParis";
+    const weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude=45.00&longitude=-1.20&daily=wind_speed_10m_max,wind_direction_10m_dominant,surface_pressure_mean&timezone=Europe%2FParis";
+
+    const [marineRes, weatherRes] = await Promise.all([
+        fetch(marineUrl).then(r => r.json()),
+        fetch(weatherUrl).then(r => r.json())
+    ]);
+
+    const forecasts = [];
+    for (let i = 0; i < 7; i++) {
+        const dateStr = marineRes.daily.time[i] || days[i];
+        const hs = marineRes.daily.wave_height_max[i] || 1.5;
+        const tp = marineRes.daily.wave_period_max[i] || 10;
+        const wdir = marineRes.daily.wave_direction_dominant[i] || 285;
+        const wind = weatherRes.daily.wind_speed_10m_max[i] || 20;
+        const windDir = weatherRes.daily.wind_direction_10m_dominant[i] || 270;
+        const pressure = weatherRes.daily.surface_pressure_mean ? weatherRes.daily.surface_pressure_mean[i] : 1015;
+
+        const tide = estimateHarmonicTide(dateStr);
+        const surge = Math.max(0, (1015 - pressure) * 0.01) + (wind > 35 && windDir >= 210 && windDir <= 330 ? (wind - 35) * 0.008 : 0);
+        const runup = 0.35 * Math.sqrt(hs * (1.56 * tp * tp) * 0.045);
+
+        const beachesDay = {};
+        BEACHES.forEach(b => {
+            const totalWater = +(tide.highWaterNGF + b.tideOffset + surge + runup).toFixed(2);
+            const waveEnergy = hs * hs * tp;
+            const obliqueFactor = (wdir >= 295 || wdir <= 245) ? 1.15 : 1.0;
+
+            let status = "safe";
+            if (totalWater >= b.dune) {
+                status = "dune";
+            } else if ((waveEnergy * obliqueFactor >= 85 && totalWater >= b.berme - 0.35) || totalWater >= b.berme) {
+                status = "cut";
+            }
+
+            beachesDay[b.id] = {
+                status,
+                total_water_ngf: totalWater,
+                wave_hs: +hs.toFixed(1),
+                wave_tp: Math.round(tp),
+                wave_dir: Math.round(wdir),
+                wind_kmh: Math.round(wind),
+                wind_dir: Math.round(windDir),
+                tide_coeff: tide.coeff
+            };
+        });
+
+        forecasts.push({ date: dateStr, tide_coeff: tide.coeff, beaches: beachesDay });
+    }
+
+    return {
+        updated_at: new Date().toLocaleString("fr-FR"),
+        source: "Direct Open-Meteo (secours automatique)",
+        forecasts
+    };
+}
+
+async function loadData() {
+    try {
+        const res = await fetch("./data_littoral.json?t=" + Date.now());
+        if (!res.ok) throw new Error("JSON non trouvé");
+        const json = await res.json();
+        if (!json.forecasts || !json.forecasts.length) throw new Error("Format invalide");
+        appData = json;
+        document.getElementById("sourceBanner").textContent = "Données synchronisées (" + (appData.updated_at || "quotidien") + ")";
+    } catch (e) {
+        try {
+            appData = await fetchFallbackOpenMeteo();
+            document.getElementById("sourceBanner").textContent = "Mode temps réel Open-Meteo actif (en attente de data_littoral.json)";
+        } catch (err) {
+            document.getElementById("sourceBanner").textContent = "Impossible de joindre l'API météo. Vérifiez votre connexion.";
+            return;
+        }
+    }
+    renderDateButtons();
+    updateDisplay();
+}
+
+function renderDateButtons() {
+    const container = document.getElementById("dateSelector");
+    container.innerHTML = "";
+    appData.forecasts.forEach((day, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "day-btn" + (idx === selectedDayIndex ? " active" : "");
+        const d = new Date(day.date + "T12:00:00");
+        const label = idx === 0 ? "Aujourd'hui" : d.toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+        btn.textContent = label;
+        btn.onclick = () => {
+            selectedDayIndex = idx;
+            renderDateButtons();
+            updateDisplay();
+        };
+        container.appendChild(btn);
+    });
+}
+
+function updateDisplay() {
+    const dayData = appData.forecasts[selectedDayIndex];
+    BEACHES.forEach(b => {
+        const bData = dayData.beaches[b.id];
+        if (!bData) return;
+
+        const cls = bData.status === "dune" ? "marker-dune" : (bData.status === "cut" ? "marker-cut" : "marker-safe");
+        const icon = L.divIcon({
+            className: "custom-div-icon",
+            html: `<div class="marker-pin ${cls}"></div>`,
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
+        });
+
+        if (markers[b.id]) {
+            markers[b.id].setIcon(icon);
+        } else {
+            const m = L.marker([b.lat, b.lon], { icon }).addTo(map);
+            m.on("click", () => {
+                selectedBeachId = b.id;
+                updateBeachPanel();
+            });
+            markers[b.id] = m;
+        }
+    });
+    updateBeachPanel();
+}
+
+function updateBeachPanel() {
+    const beach = BEACHES.find(b => b.id === selectedBeachId) || BEACHES[5];
+    const dayData = appData.forecasts[selectedDayIndex];
+    const bData = dayData.beaches[beach.id];
+    if (!bData) return;
+
+    document.getElementById("beachName").textContent = beach.name;
+    const badge = document.getElementById("beachBadge");
+    if (bData.status === "dune") {
+        badge.className = "badge dune";
+        badge.textContent = "Attaque Pied de Dune";
+        document.getElementById("beachDesc").textContent = `Alerte rouge : le niveau d'eau extrême (+${bData.total_water_ngf} m NGF) atteint ou dépasse le pied de dune (+${beach.dune} m NGF). Risque élevé de recul du cordon dunaire.`;
+    } else if (bData.status === "cut") {
+        badge.className = "badge cut";
+        badge.textContent = "Cut d'Estran";
+        document.getElementById("beachDesc").textContent = `Vigilance jaune : forte énergie de houle attaquant la berme (+${beach.berme} m NGF) sans atteindre le pied de dune (+${beach.dune} m NGF). Formation probable d'une micro-falaise sur la plage.`;
+    } else {
+        badge.className = "badge safe";
+        badge.textContent = "Secteur Stable";
+        document.getElementById("beachDesc").textContent = `Niveau d'eau extrême (+${bData.total_water_ngf} m NGF) contenu sous la berme (+${beach.berme} m NGF). Pas d'érosion significative attendue.`;
+    }
+
+    document.getElementById("metricsGrid").style.display = "grid";
+    document.getElementById("mWave").textContent = `${bData.wave_hs} m / ${bData.wave_tp} s (${bData.wave_dir}°)`;
+    document.getElementById("mWind").textContent = `${bData.wind_kmh} km/h (${bData.wind_dir}°)`;
+    document.getElementById("mTide").textContent = `Coeff ${bData.tide_coeff} / +${bData.total_water_ngf} m`;
+    document.getElementById("mLidar").textContent = `+${beach.berme} m / +${beach.dune} m`;
+
+    renderChart(beach);
+}
+
+function renderChart(beach) {
+    const ctx = document.getElementById("forecastChart").getContext("2d");
+    const labels = appData.forecasts.map(d => {
+        const dt = new Date(d.date + "T12:00:00");
+        return dt.toLocaleDateString("fr-FR", { day: "numeric", month: "short" });
+    });
+    const waterLevels = appData.forecasts.map(d => d.beaches[beach.id]?.total_water_ngf || 0);
+    const bermeLine = appData.forecasts.map(() => beach.berme);
+    const duneLine = appData.forecasts.map(() => beach.dune);
+
+    if (chartInstance) chartInstance.destroy();
+    chartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels,
+            datasets: [
+                { label: "Niveau d'eau max (m NGF)", data: waterLevels, borderColor: "#38bdf8", backgroundColor: "rgba(56, 189, 248, 0.2)", fill: true, tension: 0.3 },
+                { label: "Crête de Berme (Cut)", data: bermeLine, borderColor: "#f59e0b", borderDash: [5, 5], pointRadius: 0 },
+                { label: "Pied de Dune (Alerte)", data: duneLine, borderColor: "#ef4444", borderDash: [4, 4], pointRadius: 0 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { labels: { color: "#cbd5e1", font: { size: 11 } } } },
+            scales: {
+                x: { ticks: { color: "#94a3b8" }, grid: { color: "#1e293b" } },
+                y: { ticks: { color: "#94a3b8" }, grid: { color: "#334155" }, suggestedMin: 2.0, suggestedMax: 5.5 }
+            }
+        }
+    });
+}
+
+initMap();
+loadData();
+</script>
+</body>
+</html>
