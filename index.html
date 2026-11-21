@@ -139,15 +139,16 @@
     function getD(k, i) { const m = P[k], fk = Object.keys(B).slice(0,1).pop(), lk = B[k] ? k : (m && B[m.f] ? m.f : fk), a = B[lk] || Array.of(); return a.slice(i, i+1).pop() || a.slice(0,1).pop() || { hs: 1.8, tp: 10.5, waveDir: 280, wind: 20, coeff: 60, totalWater: 3.1, effectivePower: 35, status: "safe" }; }
     function drawZoom() { const b = document.getElementById('zoom-bar'); b.innerHTML = ''; Z.forEach(z => { const bt = document.createElement('button'); bt.className = 'btn btn-zoom' + (z.id === zid ? ' active' : ''); bt.textContent = z.l; bt.onclick = () => { const p = z.v.split(' ').map(Number); setViewBox(p.slice(0,1).pop(), p.slice(1,2).pop(), p.slice(2,3).pop(), p.slice(3,4).pop(), z.id); }; b.appendChild(bt); }); }
     function drawDates() { const b = document.getElementById('date-bar'); b.innerHTML = ''; D.forEach((d, i) => { const bt = document.createElement('button'); bt.className = 'btn' + (i === day ? ' active' : ''); const dt = new Date(d + 'T12:00:00'); bt.textContent = i === 0 ? "Aujourd'hui" : (isNaN(dt) ? d : dt.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })); bt.onclick = () => { day = i; drawDates(); drawPts(); drawDet(sel); }; b.appendChild(bt); }); }
-    function drawPts() {
+        function drawPts() {
+      const ns = "http" + "://www.w3.org" + "/2000/svg";
       const g = document.getElementById('markers-group'); g.innerHTML = ''; const sc = vb.w / 420, rb = Math.max(1.7, 5*sc), fs = Math.max(3.4, 8.5*sc);
       Object.keys(P).forEach(k => {
         const m = P[k], pv = getD(k, day), x = Math.round((120 + ((m.lo + 1.28)/0.23)*80)*10)/10, y = Math.round((55 + ((45.58 - m.la)/1.16)*555)*10)/10;
         const isD = pv.duneAttack || pv.status === 'dune', isC = !isD && (pv.cutEstran || pv.status === 'cut'), col = isD ? '#ef4444' : (isC ? '#38bdf8' : '#22c55e'), isS = k === sel;
-        const gr = document.createElementNS('http://w3.org', 'g'); gr.setAttribute('class', 'plage-point'); gr.onclick = () => { sel = k; drawPts(); drawDet(k); };
-        if (isD || isC) { const rg = document.createElementNS('http://w3.org', 'circle'); rg.setAttribute('cx', x); rg.setAttribute('cy', y); rg.setAttribute('r', rb*2.2); rg.setAttribute('fill', col); rg.setAttribute('class', 'pulse-ring'); gr.appendChild(rg); }
-        const c = document.createElementNS('http://w3.org', 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', isS ? rb*1.35 : rb); c.setAttribute('fill', col); c.setAttribute('stroke', isS ? '#facc15' : '#fff'); c.setAttribute('stroke-width', Math.max(0.5, 1.3*sc)); gr.appendChild(c);
-        const t = document.createElementNS('http://w3.org', 'text'); t.setAttribute('x', x + rb*1.8); t.setAttribute('y', y + fs*0.35); t.setAttribute('fill', isS ? '#facc15' : '#f1f5f9'); t.setAttribute('font-size', fs); t.setAttribute('font-weight', isS ? '700' : '500'); t.textContent = m.s; gr.appendChild(t);
+        const gr = document.createElementNS(ns, 'g'); gr.setAttribute('class', 'plage-point'); gr.onclick = () => { sel = k; drawPts(); drawDet(k); };
+        if (isD || isC) { const rg = document.createElementNS(ns, 'circle'); rg.setAttribute('cx', x); rg.setAttribute('cy', y); rg.setAttribute('r', rb*2.2); rg.setAttribute('fill', col); rg.setAttribute('class', 'pulse-ring'); gr.appendChild(rg); }
+        const c = document.createElementNS(ns, 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', isS ? rb*1.35 : rb); c.setAttribute('fill', col); c.setAttribute('stroke', isS ? '#facc15' : '#fff'); c.setAttribute('stroke-width', Math.max(0.5, 1.3*sc)); gr.appendChild(c);
+        const t = document.createElementNS(ns, 'text'); t.setAttribute('x', x + rb*1.8); t.setAttribute('y', y + fs*0.35); t.setAttribute('fill', isS ? '#facc15' : '#f1f5f9'); t.setAttribute('font-size', fs); t.setAttribute('font-weight', isS ? '700' : '500'); t.textContent = m.s; gr.appendChild(t);
         g.appendChild(gr);
       });
     }
@@ -162,3 +163,9 @@
     const td = new Date(); D = Array.from({length:7}, (_,i) => { const d = new Date(td); d.setDate(td.getDate()+i); return d.toISOString().slice(0,10); });
     drawZoom(); drawDates(); drawPts(); drawDet(sel);
     fetch('data_littoral.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(raw => {
+      if (raw && raw.beaches) { B = raw.beaches; const fk = Object.keys(B).slice(0,1).pop(); if (fk && Array.isArray(B[fk])) D = B[fk].map(x => x.date); document.getElementById('update-info').textContent = `Mise à jour : ${raw.updated_at || 'OK'}`; drawDates(); drawPts(); drawDet(sel); }
+      else { document.getElementById('update-info').textContent = "Affichage actif"; }
+    }).catch(() => { document.getElementById('update-info').textContent = "Affichage actif"; });
+  </script>
+</body>
+</html>
