@@ -2,9 +2,8 @@ name: Mise à jour quotidienne Érosion Gironde
 
 on:
   schedule:
-    # Exécution automatique tous les jours à 05h30 UTC (06h30 heure d'hiver / 07h30 heure d'été à Paris)
     - cron: '30 5 * * *'
-  workflow_dispatch: # Permet le déclenchement manuel depuis l'onglet Actions
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -32,15 +31,16 @@ jobs:
           SHOM_API_KEY: ${{ secrets.SHOM_API_KEY }}
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           ALERT_EMAIL_TO: ${{ secrets.ALERT_EMAIL_TO }}
+          ALERT_EMAIL: ${{ secrets.ALERT_EMAIL }}
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           TWILIO_FROM_NUMBER: ${{ secrets.TWILIO_FROM_NUMBER }}
           ALERT_SMS_TO: ${{ secrets.ALERT_SMS_TO }}
         run: python update_coastal_data.py
 
-            - name: Sauvegarde de data_littoral.json dans le dépôt
+      - name: Sauvegarde de data_littoral.json dans le dépôt
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@://github.com"
           git config --local user.name "github-actions[bot]"
           git add data_littoral.json
           if ! git diff --staged --quiet; then
