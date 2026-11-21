@@ -2,8 +2,9 @@ name: Mise à jour quotidienne Érosion Gironde
 
 on:
   schedule:
+    # Exécution automatique chaque matin à 05h30 UTC (06h30 heure d'hiver / 07h30 heure d'été à Paris)
     - cron: '30 5 * * *'
-  workflow_dispatch:
+  workflow_dispatch: # Permet de lancer la mise à jour manuellement depuis l'onglet Actions
 
 permissions:
   contents: write
@@ -40,11 +41,12 @@ jobs:
 
       - name: Sauvegarde de data_littoral.json dans le dépôt
         run: |
-          git config --local user.email "github-actions[bot] @users.noreply.github.com"
+          git config --local user.email "github-actions[bot]@://github.com"
           git config --local user.name "github-actions[bot]"
+          git fetch origin main
+          git reset --soft origin/main
           git add data_littoral.json
           if ! git diff --staged --quiet; then
             git commit -m "Mise à jour prévisions 7j littoral girondin"
-            git pull --rebase -X origin main
-            git push
+            git push origin main
           fi
