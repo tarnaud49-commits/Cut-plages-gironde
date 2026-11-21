@@ -12,7 +12,6 @@ BEACHES = {
     "montalivet": {"nom": "Vendays-Montalivet", "lat": 45.378, "lon": -1.161, "berme": 3.00, "dune": 4.45, "orient": 280},
     "hourtin": {"nom": "Hourtin Plage", "lat": 45.221, "lon": -1.178, "berme": 3.10, "dune": 4.70, "orient": 278},
     "carcans": {"nom": "Carcans Plage", "lat": 45.085, "lon": -1.192, "berme": 3.15, "dune": 4.80, "orient": 277},
-
     "lacanau_lion": {"nom": "Lacanau — Le Lion", "lat": 45.035, "lon": -1.196, "berme": 3.10, "dune": 4.70, "orient": 276},
     "lacanau_nord": {"nom": "Lacanau — Plage Nord", "lat": 45.016, "lon": -1.199, "berme": 3.05, "dune": 4.60, "orient": 276},
     "lacanau_centrale": {"nom": "Lacanau — Plage Centrale", "lat": 45.002, "lon": -1.201, "berme": 3.00, "dune": 4.55, "orient": 276},
@@ -20,11 +19,9 @@ BEACHES = {
     "lacanau_ecureuils": {"nom": "Lacanau — Les Écureuils", "lat": 44.978, "lon": -1.205, "berme": 3.10, "dune": 4.75, "orient": 276},
     "lacanau_supersud": {"nom": "Lacanau — Super Sud", "lat": 44.962, "lon": -1.208, "berme": 3.15, "dune": 4.85, "orient": 275},
     "lacanau_alexandre": {"nom": "Lacanau — La Alexandre", "lat": 44.938, "lon": -1.211, "berme": 3.18, "dune": 4.95, "orient": 275},
-
     "porge_gressier": {"nom": "Le Porge — Le Gressier", "lat": 44.915, "lon": -1.212, "berme": 3.20, "dune": 5.00, "orient": 275},
     "porge_centrale": {"nom": "Le Porge — Plage Centrale", "lat": 44.892, "lon": -1.215, "berme": 3.20, "dune": 5.05, "orient": 275},
     "porge_jenny": {"nom": "Le Porge — La Jenny", "lat": 44.862, "lon": -1.219, "berme": 3.18, "dune": 4.95, "orient": 275},
-
     "grand_crohot": {"nom": "Lège — Le Grand Crohot", "lat": 44.812, "lon": -1.226, "berme": 3.15, "dune": 4.90, "orient": 275},
     "truc_vert": {"nom": "Cap Ferret — Le Truc Vert", "lat": 44.738, "lon": -1.239, "berme": 3.10, "dune": 4.75, "orient": 274},
     "garonne": {"nom": "Cap Ferret — La Garonne", "lat": 44.705, "lon": -1.245, "berme": 3.05, "dune": 4.65, "orient": 274},
@@ -32,15 +29,12 @@ BEACHES = {
     "horizon": {"nom": "Cap Ferret — L'Horizon", "lat": 44.645, "lon": -1.256, "berme": 2.95, "dune": 4.50, "orient": 272},
     "dunes_ferret": {"nom": "Cap Ferret — Les Dunes", "lat": 44.622, "lon": -1.254, "berme": 2.90, "dune": 4.40, "orient": 272},
     "pointe_ferret": {"nom": "Cap Ferret — La Pointe", "lat": 44.602, "lon": -1.248, "berme": 2.80, "dune": 4.25, "orient": 271},
-
     "petit_nice": {"nom": "Pyla-sur-Mer — Le Petit Nice", "lat": 44.572, "lon": -1.226, "berme": 2.80, "dune": 4.25, "orient": 270},
     "la_lagune": {"nom": "Pyla-sur-Mer — La Lagune", "lat": 44.552, "lon": -1.233, "berme": 2.85, "dune": 4.35, "orient": 270},
     "salie_nord": {"nom": "La Teste — La Salie Nord", "lat": 44.532, "lon": -1.240, "berme": 2.90, "dune": 4.40, "orient": 271},
     "salie_sud": {"nom": "La Teste — La Salie Sud", "lat": 44.512, "lon": -1.245, "berme": 2.95, "dune": 4.45, "orient": 272},
-
     "biscarrosse": {"nom": "Biscarrosse Plage", "lat": 44.448, "lon": -1.254, "berme": 3.05, "dune": 4.60, "orient": 273}
 }
-
 def fetch_json_retry(url, headers=None, retries=3):
     req_headers = {"User-Agent": "Observatoire-Littoral-Gironde/2.0"}
     if headers:
@@ -56,22 +50,15 @@ def fetch_json_retry(url, headers=None, retries=3):
     return None
 
 def get_accurate_tide(dt_utc):
-    # Éphéméride lunaire précis (Nouvelle Lune de réf. : 18 janv. 2026 19h52 UTC)
-    # En France (côte Atlantique), l'onde de vive-eau culmine ~36h (1.5 jour) après la syzygie
     nm_ref = datetime(2026, 1, 18, 19, 52, tzinfo=timezone.utc)
     synodic_month = 29.530588853
     lunar_age = ((dt_utc - nm_ref).total_seconds() / 86400.0) % synodic_month
     spring_lag_days = 1.5
     phase_angle = 2.0 * math.pi * (lunar_age - spring_lag_days) / (synodic_month / 2.0)
-
-    # Modulation annuelle (équinoxes mars/septembre vs solstices)
     day_of_year = dt_utc.timetuple().tm_yday
     equinox_boost = 6.0 * math.cos(2.0 * math.pi * (day_of_year - 80) / 182.625)
-
     coeff = int(round(73.0 + (34.0 + equinox_boost) * math.cos(phase_angle)))
     coeff = max(24, min(118, coeff))
-
-    # Hauteur d'eau astronomique de pleine mer (m NGF, calibrée côte girondine)
     pm_ngf = round(1.82 + (coeff - 20) * (1.28 / 100.0), 2)
     return coeff, pm_ngf
 
@@ -104,7 +91,6 @@ def main():
     now = datetime.now(timezone.utc)
     dates = [(now + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
 
-    # Regroupement par zones météo-marines pour optimiser les appels API (10 zones couvrant les 28 secteurs)
     zones_coords = {}
     for key, info in BEACHES.items():
         z_key = f"{round(info['lat'], 1)}_{round(info['lon'], 1)}"
@@ -152,15 +138,52 @@ def main():
             else:
                 wind, wind_dir, press = 20.0, 270, 1015.0
 
-            # 1. Composante onshore du vent (poussée vers la côte orientée ~275°)
             wind_angle_rad = math.radians(((wind_dir - info["orient"] + 180) % 360) - 180)
-            onshore_wind = wind * math.cos(wind_angle_rad)  # Positif si vent de mer, négatif si vent de terre
+            onshore_wind = wind * math.cos(wind_angle_rad)
 
-            # 2. Niveau d'eau extrême (Marée + Surcote barométrique + Wind setup + Run-up Stockdon)
             surcote_baro = max(0.0, (1015.0 - press) * 0.01)
             wind_setup = max(-0.08, onshore_wind * 0.0045)
             runup = 0.34 * math.sqrt(hs * (1.56 * (tp ** 2)) * 0.042)
             total_water = round(pm_ngf + surcote_baro + wind_setup + runup, 2)
 
-            # 3. Puissance effective pour le CUT d'estran (Houle + Obliquité + Courant de retour généré par le vent)
             wave_obliquity = abs(((wave_dir - info["orient"] + 180) % 360) - 180)
+            obliquity_factor = 1.22 if 18 <= wave_obliquity <= 55 else 1.0
+            wind_cut_factor = 1.0 + max(-0.12, min(0.28, onshore_wind * 0.0045))
+            effective_power = int(round((hs ** 2) * tp * obliquity_factor * wind_cut_factor))
+
+            dune_attack = total_water >= (info["dune"] - 0.12)
+            cut_estran = (not dune_attack) and (effective_power >= 58 or (total_water >= info["berme"] and hs >= 2.25))
+            status = "dune" if dune_attack else ("cut" if cut_estran else "safe")
+
+            if day_idx <= 1 and status != "safe":
+                label = "ATTAQUE DUNE (Rouge)" if status == "dune" else "CUT D'ESTRAN (Bleu)"
+                alerts_48h.append(f"<b>{info['nom']}</b> ({d_str}) : {label} — Houle {hs}m/{tp}s, Vent {wind}km/h, Coeff {coeff}, Eau max +{total_water}m NGF")
+
+            daily_list.append({
+                "date": d_str,
+                "hs": round(hs, 2),
+                "tp": round(tp, 1),
+                "waveDir": wave_dir,
+                "wind": round(wind, 1),
+                "windDir": wind_dir,
+                "coeff": coeff,
+                "totalWater": total_water,
+                "effectivePower": effective_power,
+                "duneAttack": dune_attack,
+                "cutEstran": cut_estran,
+                "status": status
+            })
+
+        beaches_output[key] = daily_list
+
+    output = {
+        "updated_at": now.strftime("%d/%m/%Y %H:%M UTC"),
+        "beaches": beaches_output
+    }
+    with open("data_littoral.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print("Mise à jour terminée pour", len(beaches_output), "plages.")
+    send_email_alert(alerts_48h)
+
+if __name__ == "__main__":
+    main()
