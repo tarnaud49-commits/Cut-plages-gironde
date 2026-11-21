@@ -109,7 +109,9 @@
         d.setDate(today.getDate() + i);
         return d.toISOString().slice(0, 10);
       });
-      const list = Array.isArray(raw) ? raw : (raw.plages || raw.beaches || []);
+      const src = Array.isArray(raw) ? raw : (raw.plages || raw.beaches || raw.data || raw);
+const list = Array.isArray(src) ? src : Object.values(src).filter(v => v && typeof v === 'object');
+
       const plages = list.map((p, idx) => {
         const prevs = Array.isArray(p.previsions) ? p.previsions : dates.map((dt) => ({
           date: dt,
