@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Érosion Littorale Gironde — Prévisions 7 jours</title>
-  <link rel="stylesheet" href="https://unpkg.com" />
-  <script src="https://unpkg.com"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { display: flex; flex-direction: column; height: 100vh; background: #0f172a; color: #f8fafc; }
@@ -13,17 +11,18 @@
     header h1 { font-size: 1.1rem; font-weight: 700; color: #38bdf8; }
     header p { font-size: 0.78rem; color: #94a3b8; }
     .date-bar { display: flex; gap: 6px; overflow-x: auto; padding: 10px 16px; background: #0f172a; border-bottom: 1px solid #1e293b; min-height: 48px; }
-    .date-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; white-space: nowrap; }
+    .date-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; white-space: nowrap; transition: 0.2s; }
     .date-btn.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: 600; }
     .main-container { display: flex; flex: 1; overflow: hidden; }
-    #map { flex: 1; height: 100%; min-height: 320px; z-index: 1; background: #cbd5e1; }
-    .sidebar { width: 360px; background: #1e293b; border-left: 1px solid #334155; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+    .map-wrapper { flex: 1; position: relative; background: #0c4a6e; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+    #coast-map { width: 100%; height: 100%; max-width: 680px; }
+    .sidebar { width: 370px; background: #1e293b; border-left: 1px solid #334155; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
     .legend { display: flex; gap: 12px; font-size: 0.78rem; background: #0f172a; padding: 8px 12px; border-radius: 8px; }
     .legend span { display: flex; align-items: center; gap: 6px; }
     .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     .dot-green { background: #22c55e; }
-    .dot-yellow { background: #eab308; animation: pulseYellow 1.2s infinite; }
-    .dot-red { background: #ef4444; animation: pulseRed 1s infinite; }
+    .dot-yellow { background: #eab308; animation: pulseDot 1.2s infinite; }
+    .dot-red { background: #ef4444; animation: pulseDot 1s infinite; }
     .card { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 14px; }
     .card h2 { font-size: 1rem; margin-bottom: 6px; color: #f8fafc; }
     .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-bottom: 10px; }
@@ -35,25 +34,21 @@
     .metric label { display: block; font-size: 0.7rem; color: #94a3b8; }
     .metric strong { font-size: 0.92rem; color: #f1f5f9; }
     .profile-box { margin-top: 10px; background: #1e293b; border-radius: 8px; padding: 10px; }
-    svg { width: 100%; height: 130px; }
-    @keyframes pulseYellow {
-      0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.85); transform: scale(1); }
-      70% { box-shadow: 0 0 0 12px rgba(234, 179, 8, 0); transform: scale(1.2); }
-      100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); transform: scale(1); }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.25); }
     }
-    @keyframes pulseRed {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.9); transform: scale(1); }
-      70% { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); transform: scale(1.25); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); transform: scale(1); }
+    @keyframes svgPulse {
+      0% { r: 6; opacity: 0.9; }
+      70% { r: 16; opacity: 0; }
+      100% { r: 6; opacity: 0; }
     }
-    .marker-pin { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid #ffffff; cursor: pointer; }
-    .marker-stable { background: #22c55e; }
-    .marker-cut { background: #eab308; animation: pulseYellow 1.2s infinite; }
-    .marker-dune { background: #ef4444; animation: pulseRed 1s infinite; }
+    .pulse-ring { animation: svgPulse 1.3s infinite ease-out; transform-box: fill-box; transform-origin: center; }
+    .plage-point { cursor: pointer; }
     @media (max-width: 768px) {
       .main-container { flex-direction: column; }
-      #map { height: 55vh; }
-      .sidebar { width: 100%; height: 45vh; border-left: none; border-top: 1px solid #334155; }
+      .map-wrapper { height: 52vh; }
+      .sidebar { width: 100%; height: 48vh; border-left: none; border-top: 1px solid #334155; }
     }
   </style>
 </head>
@@ -61,7 +56,7 @@
   <header>
     <div>
       <h1>Vigilance Érosion — Littoral Girondin</h1>
-      <p id="update-info">Initialisation...</p>
+      <p id="update-info">Chargement des prévisions...</p>
     </div>
     <div class="legend">
       <span><i class="dot dot-green"></i> Stable</span>
@@ -73,18 +68,48 @@
   <div class="date-bar" id="date-bar"></div>
 
   <div class="main-container">
-    <div id="map"></div>
+    <div class="map-wrapper">
+      <svg id="coast-map" viewBox="0 0 420 620" preserveAspectRatio="xMidYMid meet">
+        <!-- Océan Atlantique -->
+        <rect x="0" y="0" width="420" height="620" fill="#0c4a6e" />
+        <text x="25" y="290" fill="#38bdf8" opacity="0.35" font-size="15" font-weight="700" letter-spacing="2">OCÉAN ATLANTIQUE</text>
+        <text x="195" y="42" fill="#7dd3fc" opacity="0.55" font-size="11" font-weight="600">Estuaire de la Gironde</text>
+
+        <!-- Terres (Médoc, Bassin d'Arcachon, Nord Landes) -->
+        <path d="M 192,48 L 225,52 L 420,170 L 420,620 L 118,620 L 122,520 L 138,485 L 155,480 L 185,495 L 210,480 L 205,445 L 175,435 L 145,455 L 136,480 L 130,455 L 145,355 L 160,245 L 175,135 L 186,65 Z" fill="#1e293b" stroke="#475569" stroke-width="2" />
+
+        <!-- Lacs médocains & Bassin d'Arcachon -->
+        <ellipse cx="182" cy="195" rx="9" ry="26" fill="#0284c7" opacity="0.55" />
+        <text x="196" y="198" fill="#94a3b8" font-size="9">Lac d'Hourtin</text>
+        <ellipse cx="174" cy="285" rx="7" ry="15" fill="#0284c7" opacity="0.55" />
+        <text x="186" y="288" fill="#94a3b8" font-size="9">Lac de Lacanau</text>
+        <path d="M 145,455 Q 175,435 205,445 Q 210,480 185,495 Q 155,480 145,455 Z" fill="#0284c7" opacity="0.7" />
+        <text x="152" y="472" fill="#e0f2fe" font-size="9" font-weight="600">Bassin d'Arcachon</text>
+        <ellipse cx="152" cy="565" rx="8" ry="16" fill="#0284c7" opacity="0.55" />
+        <text x="165" y="568" fill="#94a3b8" font-size="9">Lac de Cazaux</text>
+
+        <!-- Repère Nord & Échelle -->
+        <g transform="translate(35, 35)">
+          <circle cx="0" cy="0" r="14" fill="#0f172a" stroke="#334155" />
+          <text x="-4" y="4" fill="#38bdf8" font-size="11" font-weight="700">N</text>
+        </g>
+
+        <!-- Calque des plages -->
+        <g id="markers-group"></g>
+      </svg>
+    </div>
+
     <aside class="sidebar">
       <div class="card" id="detail-card">
         <h2>Sélectionnez une plage</h2>
-        <p style="font-size:0.85rem;color:#94a3b8;">Cliquez sur un point de la carte (du Verdon-sur-Mer à Biscarrosse) pour consulter le diagnostic morphodynamique et les cotes LiDAR.</p>
+        <p style="font-size:0.85rem;color:#94a3b8;">Cliquez sur un point du littoral pour afficher le diagnostic.</p>
       </div>
     </aside>
   </div>
 
   <script>
     const PLAGES_REF = Array.of(
-      { id: "verdon", nom: "Le Verdon-sur-Mer (Pointe de Grave)", lat: 45.568, lon: -1.085, berme: 2.90, dune: 4.20 },
+      { id: "verdon", nom: "Le Verdon (Pointe de Grave)", lat: 45.568, lon: -1.085, berme: 2.90, dune: 4.20 },
       { id: "soulac", nom: "Soulac-sur-Mer", lat: 45.515, lon: -1.132, berme: 2.85, dune: 4.10 },
       { id: "montalivet", nom: "Vendays-Montalivet", lat: 45.378, lon: -1.161, berme: 3.00, dune: 4.45 },
       { id: "hourtin", nom: "Hourtin Plage", lat: 45.221, lon: -1.178, berme: 3.10, dune: 4.70 },
@@ -94,28 +119,26 @@
       { id: "lege", nom: "Lège (Grand Crohot)", lat: 44.812, lon: -1.226, berme: 3.15, dune: 4.90 },
       { id: "trucvert", nom: "Cap Ferret (Truc Vert)", lat: 44.718, lon: -1.242, berme: 3.10, dune: 4.75 },
       { id: "horizon", nom: "Cap Ferret (L'Horizon)", lat: 44.635, lon: -1.256, berme: 2.95, dune: 4.50 },
-      { id: "pilat", nom: "Pyla-sur-Mer (Dune du Pilat)", lat: 44.588, lon: -1.218, berme: 2.80, dune: 4.30 },
+      { id: "pilat", nom: "Pyla-sur-Mer (Pilat)", lat: 44.588, lon: -1.218, berme: 2.80, dune: 4.30 },
       { id: "biscarrosse", nom: "Biscarrosse Plage", lat: 44.448, lon: -1.254, berme: 3.05, dune: 4.60 }
     );
 
-    const map = L.map('map').setView(L.latLng(45.02, -1.18), 9);
-    L.tileLayer('https://openstreetmap.org{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap',
-      maxZoom: 18
-    }).addTo(map);
-    setTimeout(() => { map.invalidateSize(); }, 250);
+    function geoToSvg(lat, lon) {
+      const x = 120 + ((lon - (-1.28)) / ((-1.05) - (-1.28))) * 80;
+      const y = 55 + ((45.58 - lat) / (45.58 - 44.42)) * 535;
+      return { x: Math.round(x), y: Math.round(y) };
+    }
 
     let coastalData = null;
     let selectedDayIndex = 0;
     let selectedPlageId = "lacanau";
-    let markersLayer = L.layerGroup().addTo(map);
 
     function formatDateFr(isoDate) {
       const d = new Date(isoDate + 'T12:00:00');
       return isNaN(d) ? isoDate : d.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
     }
 
-    function buildDefaultData() {
+    function buildFallbackData() {
       const today = new Date();
       const dates = Array.from({length: 7}, (_, i) => {
         const d = new Date(today);
@@ -125,16 +148,7 @@
       const plages = PLAGES_REF.map(p => ({
         ...p,
         previsions: dates.map((dt, idx) => ({
-          date: dt,
-          coeff: 78 + (idx * 3),
-          pm_ngf: 2.55,
-          hs: 2.1,
-          tp: 12.0,
-          wdir: 280,
-          wind: 25,
-          eau_totale: 3.65,
-          energie: 52.9,
-          statut: 'stable'
+          date: dt, coeff: 76 + idx * 3, pm_ngf: 2.50, hs: 2.0, tp: 11.5, wdir: 280, wind: 22, eau_totale: 3.55, energie: 46.0, statut: 'stable'
         }))
       }));
       return { updated_at: new Date().toISOString(), dates, plages };
@@ -158,35 +172,12 @@
     }
 
     function renderMarkers() {
-      markersLayer.clearLayers();
+      const group = document.getElementById('markers-group');
+      group.innerHTML = '';
       coastalData.plages.forEach(p => {
         const prev = p.previsions.at(selectedDayIndex) || p.previsions.at(0);
-        const cls = prev.statut === 'dune' ? 'marker-dune' : (prev.statut === 'cut' ? 'marker-cut' : 'marker-stable');
-        const icon = L.divIcon({
-          className: '',
-          html: `<div class="marker-pin ${cls}" title="${p.nom}"></div>`,
-          iconSize: L.point(18, 18),
-          iconAnchor: L.point(9, 9)
-        });
-        const m = L.marker(L.latLng(p.lat, p.lon), { icon }).addTo(markersLayer);
-        m.on('click', () => {
-          selectedPlageId = p.id;
-          renderDetail(p.id);
-        });
-      });
-    }
+        const pos = geoToSvg(p.lat, p.lon);
+        const color = prev.statut === 'dune' ? '#ef4444' : (prev.statut === 'cut' ? '#eab308' : '#22c55e');
+        const isSelected = p.id === selectedPlageId;
 
-    function renderDetail(plageId) {
-      const p = coastalData.plages.find(x => x.id === plageId) || coastalData.plages.at(0);
-      if (!p) return;
-      selectedPlageId = p.id;
-      const prev = p.previsions.at(selectedDayIndex) || p.previsions.at(0);
-      const card = document.getElementById('detail-card');
-
-      let badgeHtml = `<span class="badge badge-stable">Profil stable</span>`;
-      let diagnostic = "L'énergie de la houle et le niveau d'eau restent sous les seuils critiques d'érosion.";
-      if (prev.statut === 'cut') {
-        badgeHtml = `<span class="badge badge-cut">Risque de CUT d'estran</span>`;
-        diagnostic = `Forte énergie incidente (${prev.energie} kW/m) et/ou dérive oblique : risque de creusement de baïne et formation d'une micro-falaise sur la berme (+${p.berme}m NGF) sans atteindre la dune.`;
-      } else if (prev.statut === 'dune') {
-        badgeHtml = `<span class="badge badge-dune">ALERTE ATTAQUE PIED DE DUNE</span>`;
+        const g = document.createElementNS('http://w3.org', 'g');
