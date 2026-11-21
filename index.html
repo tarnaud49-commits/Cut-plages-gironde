@@ -16,7 +16,7 @@
     .date-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; white-space: nowrap; }
     .date-btn.active { background: #0284c7; color: #fff; border-color: #38bdf8; font-weight: 600; }
     .main-container { display: flex; flex: 1; overflow: hidden; }
-    #map { flex: 1; height: 100%; min-height: 300px; z-index: 1; background: #cbd5e1; }
+    #map { flex: 1; height: 100%; min-height: 320px; z-index: 1; background: #cbd5e1; }
     .sidebar { width: 360px; background: #1e293b; border-left: 1px solid #334155; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
     .legend { display: flex; gap: 12px; font-size: 0.78rem; background: #0f172a; padding: 8px 12px; border-radius: 8px; }
     .legend span { display: flex; align-items: center; gap: 6px; }
@@ -61,7 +61,7 @@
   <header>
     <div>
       <h1>Vigilance Érosion — Littoral Girondin</h1>
-      <p id="update-info">Chargement de la carte...</p>
+      <p id="update-info">Initialisation...</p>
     </div>
     <div class="legend">
       <span><i class="dot dot-green"></i> Stable</span>
@@ -83,7 +83,7 @@
   </div>
 
   <script>
-    const PLAGES_REF = [
+    const PLAGES_REF = Array.of(
       { id: "verdon", nom: "Le Verdon-sur-Mer (Pointe de Grave)", lat: 45.568, lon: -1.085, berme: 2.90, dune: 4.20 },
       { id: "soulac", nom: "Soulac-sur-Mer", lat: 45.515, lon: -1.132, berme: 2.85, dune: 4.10 },
       { id: "montalivet", nom: "Vendays-Montalivet", lat: 45.378, lon: -1.161, berme: 3.00, dune: 4.45 },
@@ -96,7 +96,7 @@
       { id: "horizon", nom: "Cap Ferret (L'Horizon)", lat: 44.635, lon: -1.256, berme: 2.95, dune: 4.50 },
       { id: "pilat", nom: "Pyla-sur-Mer (Dune du Pilat)", lat: 44.588, lon: -1.218, berme: 2.80, dune: 4.30 },
       { id: "biscarrosse", nom: "Biscarrosse Plage", lat: 44.448, lon: -1.254, berme: 3.05, dune: 4.60 }
-    ];
+    );
 
     const map = L.map('map').setView(L.latLng(45.02, -1.18), 9);
     L.tileLayer('https://openstreetmap.org{z}/{x}/{y}.png', {
@@ -160,7 +160,7 @@
     function renderMarkers() {
       markersLayer.clearLayers();
       coastalData.plages.forEach(p => {
-        const prev = p.previsions[selectedDayIndex] || p.previsions[0];
+        const prev = p.previsions.at(selectedDayIndex) || p.previsions.at(0);
         const cls = prev.statut === 'dune' ? 'marker-dune' : (prev.statut === 'cut' ? 'marker-cut' : 'marker-stable');
         const icon = L.divIcon({
           className: '',
@@ -177,10 +177,10 @@
     }
 
     function renderDetail(plageId) {
-      const p = coastalData.plages.find(x => x.id === plageId) || coastalData.plages[0];
+      const p = coastalData.plages.find(x => x.id === plageId) || coastalData.plages.at(0);
       if (!p) return;
       selectedPlageId = p.id;
-      const prev = p.previsions[selectedDayIndex] || p.previsions[0];
+      const prev = p.previsions.at(selectedDayIndex) || p.previsions.at(0);
       const card = document.getElementById('detail-card');
 
       let badgeHtml = `<span class="badge badge-stable">Profil stable</span>`;
