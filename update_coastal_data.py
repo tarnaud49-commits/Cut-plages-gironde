@@ -51,15 +51,24 @@ def fetch_json_retry(url, headers=None, retries=3):
 
 def get_accurate_tide(dt_utc):
     nm_ref = datetime(2026, 1, 18, 19, 52, tzinfo=timezone.utc)
-    synodic_month = 29.530588853
-    lunar_age = ((dt_utc - nm_ref).total_seconds() / 86400.0) % synodic_month
-    spring_lag_days = 1.5
-    phase_angle = 2.0 * math.pi * (lunar_age - spring_lag_days) / (synodic_month / 2.0)
-    day_of_year = dt_utc.timetuple().tm_yday
-    equinox_boost = 6.0 * math.cos(2.0 * math.pi * (day_of_year - 80) / 182.625)
-    coeff = int(round(73.0 + (34.0 + equinox_boost) * math.cos(phase_angle)))
-    coeff = max(24, min(118, coeff))
-    pm_ngf = round(1.82 + (coeff - 20) * (1.28 / 100.0), 2)
+    per_ref = datetime(2026, 1, 1, 21, 44, tzinfo=timezone.utc)
+    syn = 29.530588853
+    anom = 27.55454988
+
+    days_nm = (dt_utc - nm_ref).total_seconds() / 86400.0
+    phase_syn = 2.0 * math.pi * ((days_nm - 1.5) / (syn / 2.0))
+
+    days_per = (dt_utc - per_ref).total_seconds() / 86400.0
+    phase_anom = 2.0 * math.pi * ((days_per - 1.5) / anom)
+
+    doy = dt_utc.timetuple().tm_yday
+    decl_factor = math.cos(2.0 * math.pi * (doy - 80) / 182.625)
+
+    amp = 32.0 + 7.5 * math.cos(phase_anom) + 5.5 * decl_factor
+    coeff = int(round(71.0 + amp * math.cos(phase_syn)))
+    coeff = max(20, min(120, coeff))
+
+    pm_ngf = round(1.80 + (coeff - 20) * (1.30 / 100.0), 2)
     return coeff, pm_ngf
 
 def send_email_alert(alerts_list):
