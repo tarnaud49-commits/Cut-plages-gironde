@@ -96,7 +96,7 @@ def send_alerts(alerts_today_or_tomorrow):
     alert_email = os.getenv("ALERT_EMAIL", "").strip()
     if brevo_key and alert_email:
         payload = json.dumps({
-            "sender": {"name": "Vigilance Littoral", "email": alert_email},
+            "sender": {"name": "Vigilance Littoral", "email": tarnaud49@gmail.com},
             "to": [{"email": alert_email}],
             "subject": "⚠️ Alerte Érosion Côtière - Littoral Girondin",
             "textContent": message
