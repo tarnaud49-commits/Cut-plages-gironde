@@ -93,153 +93,72 @@
     </aside>
   </div>
 
-  <script>
-    const PLAGES_META = {
-      verdon: { nom: "Le Verdon (Pointe de Grave)", short: "Pointe de Grave", fallback: "verdon", lat: 45.568, lon: -1.085, berme: 2.90, dune: 4.20 },
-      soulac: { nom: "Soulac-sur-Mer", short: "Soulac", fallback: "soulac", lat: 45.515, lon: -1.132, berme: 2.85, dune: 4.10 },
-      "amélie": { nom: "Soulac (L'Amélie)", short: "L'Amélie", fallback: "amélie", lat: 45.485, lon: -1.142, berme: 2.85, dune: 4.15 },
-      montalivet: { nom: "Vendays-Montalivet", short: "Montalivet", fallback: "montalivet", lat: 45.378, lon: -1.161, berme: 3.00, dune: 4.45 },
-      hourtin: { nom: "Hourtin Plage", short: "Hourtin", fallback: "hourtin", lat: 45.221, lon: -1.178, berme: 3.10, dune: 4.70 },
-      carcans: { nom: "Carcans Plage", short: "Carcans", fallback: "carcans", lat: 45.085, lon: -1.192, berme: 3.15, dune: 4.80 },
-      lacanau_lion: { nom: "Lacanau — Le Lion", short: "Le Lion", fallback: "lacanau", lat: 45.035, lon: -1.196, berme: 3.10, dune: 4.70 },
-      lacanau_nord: { nom: "Lacanau — Plage Nord", short: "Lacanau Nord", fallback: "lacanau", lat: 45.016, lon: -1.199, berme: 3.05, dune: 4.60 },
-      lacanau_centrale: { nom: "Lacanau — Plage Centrale", short: "Lacanau Centrale", fallback: "lacanau", lat: 45.002, lon: -1.201, berme: 3.00, dune: 4.55 },
-      lacanau_sud: { nom: "Lacanau — Plage Sud", short: "Lacanau Sud", fallback: "lacanau", lat: 44.991, lon: -1.203, berme: 3.05, dune: 4.65 },
-      lacanau_ecureuils: { nom: "Lacanau — Les Écureuils", short: "Les Écureuils", fallback: "lacanau", lat: 44.978, lon: -1.205, berme: 3.10, dune: 4.75 },
-      lacanau_supersud: { nom: "Lacanau — Super Sud", short: "Super Sud", fallback: "lacanau", lat: 44.962, lon: -1.208, berme: 3.15, dune: 4.85 },
-      lacanau_alexandre: { nom: "Lacanau — La Alexandre", short: "La Alexandre", fallback: "lacanau", lat: 44.938, lon: -1.211, berme: 3.18, dune: 4.95 },
-      porge_gressier: { nom: "Le Porge — Le Gressier", short: "Le Gressier", fallback: "leporge", lat: 44.915, lon: -1.212, berme: 3.20, dune: 5.00 },
-      porge_centrale: { nom: "Le Porge — Plage Centrale", short: "Le Porge Centrale", fallback: "leporge", lat: 44.892, lon: -1.215, berme: 3.20, dune: 5.05 },
-      porge_jenny: { nom: "Le Porge — La Jenny", short: "La Jenny", fallback: "leporge", lat: 44.862, lon: -1.219, berme: 3.18, dune: 4.95 },
-      grand_crohot: { nom: "Lège — Le Grand Crohot", short: "Grand Crohot", fallback: "lege", lat: 44.812, lon: -1.226, berme: 3.15, dune: 4.90 },
-      truc_vert: { nom: "Cap Ferret — Le Truc Vert", short: "Truc Vert", fallback: "lege", lat: 44.738, lon: -1.239, berme: 3.10, dune: 4.75 },
-      garonne: { nom: "Cap Ferret — La Garonne", short: "La Garonne", fallback: "lege", lat: 44.705, lon: -1.245, berme: 3.05, dune: 4.65 },
-      torchere: { nom: "Cap Ferret — La Torchère", short: "La Torchère", fallback: "lege", lat: 44.675, lon: -1.251, berme: 3.00, dune: 4.55 },
-      horizon: { nom: "Cap Ferret — L'Horizon", short: "L'Horizon", fallback: "lege", lat: 44.645, lon: -1.256, berme: 2.95, dune: 4.50 },
-      dunes_ferret: { nom: "Cap Ferret — Les Dunes", short: "Les Dunes", fallback: "lege", lat: 44.622, lon: -1.254, berme: 2.90, dune: 4.40 },
-      pointe_ferret: { nom: "Cap Ferret — La Pointe", short: "La Pointe", fallback: "lege", lat: 44.602, lon: -1.248, berme: 2.80, dune: 4.25 },
-      petit_nice: { nom: "Pyla-sur-Mer — Le Petit Nice", short: "Le Petit Nice", fallback: "pilat", lat: 44.572, lon: -1.226, berme: 2.80, dune: 4.25 },
-      la_lagune: { nom: "Pyla-sur-Mer — La Lagune", short: "La Lagune", fallback: "pilat", lat: 44.552, lon: -1.233, berme: 2.85, dune: 4.35 },
-      salie_nord: { nom: "La Teste — La Salie Nord", short: "La Salie Nord", fallback: "pilat", lat: 44.532, lon: -1.240, berme: 2.90, dune: 4.40 },
-      salie_sud: { nom: "La Teste — La Salie Sud", short: "La Salie Sud", fallback: "pilat", lat: 44.512, lon: -1.245, berme: 2.95, dune: 4.45 },
-      biscarrosse: { nom: "Biscarrosse Plage", short: "Biscarrosse", fallback: "biscarrosse", lat: 44.448, lon: -1.254, berme: 3.05, dune: 4.60 }
+    <script>
+    const P = {
+      verdon: { n: "Le Verdon (Pointe de Grave)", s: "Pointe de Grave", f: "verdon", la: 45.568, lo: -1.085, b: 2.90, d: 4.20 },
+      soulac: { n: "Soulac-sur-Mer", s: "Soulac", f: "soulac", la: 45.515, lo: -1.132, b: 2.85, d: 4.10 },
+      "amélie": { n: "Soulac (L'Amélie)", s: "L'Amélie", f: "amélie", la: 45.485, lo: -1.142, b: 2.85, d: 4.15 },
+      montalivet: { n: "Vendays-Montalivet", s: "Montalivet", f: "montalivet", la: 45.378, lo: -1.161, b: 3.00, d: 4.45 },
+      hourtin: { n: "Hourtin Plage", s: "Hourtin", f: "hourtin", la: 45.221, lo: -1.178, b: 3.10, d: 4.70 },
+      carcans: { n: "Carcans Plage", s: "Carcans", f: "carcans", la: 45.085, lo: -1.192, b: 3.15, d: 4.80 },
+      lacanau_lion: { n: "Lacanau — Le Lion", s: "Le Lion", f: "lacanau", la: 45.035, lo: -1.196, b: 3.10, d: 4.70 },
+      lacanau_nord: { n: "Lacanau — Plage Nord", s: "Lacanau Nord", f: "lacanau", la: 45.016, lo: -1.199, b: 3.05, d: 4.60 },
+      lacanau_centrale: { n: "Lacanau — Plage Centrale", s: "Lacanau Centrale", f: "lacanau", la: 45.002, lo: -1.201, b: 3.00, d: 4.55 },
+      lacanau_sud: { n: "Lacanau — Plage Sud", s: "Lacanau Sud", f: "lacanau", la: 44.991, lo: -1.203, b: 3.05, d: 4.65 },
+      lacanau_ecureuils: { n: "Lacanau — Les Écureuils", s: "Les Écureuils", f: "lacanau", la: 44.978, lo: -1.205, b: 3.10, d: 4.75 },
+      lacanau_supersud: { n: "Lacanau — Super Sud", s: "Super Sud", f: "lacanau", la: 44.962, lo: -1.208, b: 3.15, d: 4.85 },
+      lacanau_alexandre: { n: "Lacanau — La Alexandre", s: "La Alexandre", f: "lacanau", la: 44.938, lo: -1.211, b: 3.18, d: 4.95 },
+      porge_gressier: { n: "Le Porge — Le Gressier", s: "Le Gressier", f: "leporge", la: 44.915, lo: -1.212, b: 3.20, d: 5.00 },
+      porge_centrale: { n: "Le Porge — Plage Centrale", s: "Le Porge Centrale", f: "leporge", la: 44.892, lo: -1.215, b: 3.20, d: 5.05 },
+      porge_jenny: { n: "Le Porge — La Jenny", s: "La Jenny", f: "leporge", la: 44.862, lo: -1.219, b: 3.18, d: 4.95 },
+      grand_crohot: { n: "Lège — Le Grand Crohot", s: "Grand Crohot", f: "lege", la: 44.812, lo: -1.226, b: 3.15, d: 4.90 },
+      truc_vert: { n: "Cap Ferret — Le Truc Vert", s: "Truc Vert", f: "lege", la: 44.738, lo: -1.239, b: 3.10, d: 4.75 },
+      garonne: { n: "Cap Ferret — La Garonne", s: "La Garonne", f: "lege", la: 44.705, lo: -1.245, b: 3.05, d: 4.65 },
+      torchere: { n: "Cap Ferret — La Torchère", s: "La Torchère", f: "lege", la: 44.675, lo: -1.251, b: 3.00, d: 4.55 },
+      horizon: { n: "Cap Ferret — L'Horizon", s: "L'Horizon", f: "lege", la: 44.645, lo: -1.256, b: 2.95, d: 4.50 },
+      dunes_ferret: { n: "Cap Ferret — Les Dunes", s: "Les Dunes", f: "lege", la: 44.622, lo: -1.254, b: 2.90, d: 4.40 },
+      pointe_ferret: { n: "Cap Ferret — La Pointe", s: "La Pointe", f: "lege", la: 44.602, lo: -1.248, b: 2.80, d: 4.25 },
+      petit_nice: { n: "Pyla-sur-Mer — Le Petit Nice", s: "Le Petit Nice", f: "pilat", la: 44.572, lo: -1.226, b: 2.80, d: 4.25 },
+      la_lagune: { n: "Pyla-sur-Mer — La Lagune", s: "La Lagune", f: "pilat", la: 44.552, lo: -1.233, b: 2.85, d: 4.35 },
+      salie_nord: { n: "La Teste — La Salie Nord", s: "La Salie Nord", f: "pilat", la: 44.532, lo: -1.240, b: 2.90, d: 4.40 },
+      salie_sud: { n: "La Teste — La Salie Sud", s: "La Salie Sud", f: "pilat", la: 44.512, lo: -1.245, b: 2.95, d: 4.45 },
+      biscarrosse: { n: "Biscarrosse Plage", s: "Biscarrosse", f: "biscarrosse", la: 44.448, lo: -1.254, b: 3.05, d: 4.60 }
     };
-        const ZOOM_ZONES = Array.of(
-      { id: "global", label: "Vue globale", vb: "0 0 420 650" },
-      { id: "medoc_nord", label: "Nord Médoc", vb: "90 35 230 155" },
-      { id: "lacanau", label: "Lacanau (7 plages)", vb: "75 262 195 105" },
-      { id: "leporge", label: "Le Porge (3 plages)", vb: "70 325 195 95" },
-      { id: "cap_ferret", label: "Cap Ferret (7 plages)", vb: "55 385 205 140" },
-      { id: "pyla", label: "Pyla & La Salie (4 plages)", vb: "65 475 195 100" },
-      { id: "biscarrosse", label: "Biscarrosse", vb: "65 535 195 100" }
+    const Z = Array.of(
+      { id: "global", l: "Vue globale", v: "0 0 420 650" },
+      { id: "medoc", l: "Nord Médoc", v: "90 35 230 155" },
+      { id: "lacanau", l: "Lacanau (7)", v: "75 262 195 105" },
+      { id: "porge", l: "Le Porge (3)", v: "70 325 195 95" },
+      { id: "ferret", l: "Cap Ferret (7)", v: "55 385 205 140" },
+      { id: "pyla", l: "Pyla & Salie (4)", v: "65 475 195 100" },
+      { id: "bisca", l: "Biscarrosse", v: "65 535 195 100" }
     );
-
-    let beachesData = {}, datesList = [], selectedDayIndex = 0, selectedBeachKey = "lacanau_centrale", activeZoomId = "global", currentVB = { x: 0, y: 0, w: 420, h: 650 };
-
-    function setViewBox(x, y, w, h, zoneId) {
-      currentVB = { x, y, w, h };
-      document.getElementById('coast-map').setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
-      if (zoneId) { activeZoomId = zoneId; renderZoomBar(); }
-      renderMarkers();
-    }
-
-    function zoomStep(factor) {
-      const nw = Math.max(65, Math.min(420, currentVB.w * factor)), nh = Math.max(95, Math.min(650, currentVB.h * factor));
-      setViewBox(currentVB.x + (currentVB.w - nw) / 2, currentVB.y + (currentVB.h - nh) / 2, nw, nh, null);
-    }
-
-    function geoToSvg(lat, lon) {
-      return { x: Math.round((120 + ((lon - (-1.28)) / 0.23) * 80) * 10) / 10, y: Math.round((55 + ((45.58 - lat) / 1.16) * 555) * 10) / 10 };
-    }
-
-    function formatDateFr(isoDate) {
-      const d = new Date(isoDate + 'T12:00:00');
-      return isNaN(d) ? isoDate : d.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
-    }
-
-    function initDefaultForecasts() {
-      const today = new Date();
-      datesList = Array.from({length: 7}, (_, i) => { const d = new Date(today); d.setDate(today.getDate() + i); return d.toISOString().slice(0, 10); });
-      const coeffs = Array.of(60, 72, 83, 92, 97, 98, 94);
-      Object.keys(PLAGES_META).forEach(k => {
-        beachesData[k] = datesList.map((dt, idx) => ({ date: dt, hs: 2.1, tp: 11.0, waveDir: 278, wind: 28, coeff: coeffs.slice(idx, idx+1).pop() || 75, totalWater: 3.35, effectivePower: 48, duneAttack: false, cutEstran: false, status: "safe" }));
+    let B = {}, D = Array.of(), day = 0, sel = "lacanau_centrale", zid = "global", vb = { x: 0, y: 0, w: 420, h: 650 };
+    function setViewBox(x, y, w, h, id) { vb = { x, y, w, h }; document.getElementById('coast-map').setAttribute('viewBox', `${x} ${y} ${w} ${h}`); if (id) { zid = id; drawZoom(); } drawPts(); }
+    function zoomStep(f) { const nw = Math.max(65, Math.min(420, vb.w * f)), nh = Math.max(95, Math.min(650, vb.h * f)); setViewBox(vb.x + (vb.w - nw)/2, vb.y + (vb.h - nh)/2, nw, nh, null); }
+    function getD(k, i) { const m = P[k], fk = Object.keys(B).slice(0,1).pop(), lk = B[k] ? k : (m && B[m.f] ? m.f : fk), a = B[lk] || Array.of(); return a.slice(i, i+1).pop() || a.slice(0,1).pop() || { hs: 1.8, tp: 10.5, waveDir: 280, wind: 20, coeff: 60, totalWater: 3.1, effectivePower: 35, status: "safe" }; }
+    function drawZoom() { const b = document.getElementById('zoom-bar'); b.innerHTML = ''; Z.forEach(z => { const bt = document.createElement('button'); bt.className = 'btn btn-zoom' + (z.id === zid ? ' active' : ''); bt.textContent = z.l; bt.onclick = () => { const p = z.v.split(' ').map(Number); setViewBox(p.slice(0,1).pop(), p.slice(1,2).pop(), p.slice(2,3).pop(), p.slice(3,4).pop(), z.id); }; b.appendChild(bt); }); }
+    function drawDates() { const b = document.getElementById('date-bar'); b.innerHTML = ''; D.forEach((d, i) => { const bt = document.createElement('button'); bt.className = 'btn' + (i === day ? ' active' : ''); const dt = new Date(d + 'T12:00:00'); bt.textContent = i === 0 ? "Aujourd'hui" : (isNaN(dt) ? d : dt.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' })); bt.onclick = () => { day = i; drawDates(); drawPts(); drawDet(sel); }; b.appendChild(bt); }); }
+    function drawPts() {
+      const g = document.getElementById('markers-group'); g.innerHTML = ''; const sc = vb.w / 420, rb = Math.max(1.7, 5*sc), fs = Math.max(3.4, 8.5*sc);
+      Object.keys(P).forEach(k => {
+        const m = P[k], pv = getD(k, day), x = Math.round((120 + ((m.lo + 1.28)/0.23)*80)*10)/10, y = Math.round((55 + ((45.58 - m.la)/1.16)*555)*10)/10;
+        const isD = pv.duneAttack || pv.status === 'dune', isC = !isD && (pv.cutEstran || pv.status === 'cut'), col = isD ? '#ef4444' : (isC ? '#38bdf8' : '#22c55e'), isS = k === sel;
+        const gr = document.createElementNS('http://w3.org', 'g'); gr.setAttribute('class', 'plage-point'); gr.onclick = () => { sel = k; drawPts(); drawDet(k); };
+        if (isD || isC) { const rg = document.createElementNS('http://w3.org', 'circle'); rg.setAttribute('cx', x); rg.setAttribute('cy', y); rg.setAttribute('r', rb*2.2); rg.setAttribute('fill', col); rg.setAttribute('class', 'pulse-ring'); gr.appendChild(rg); }
+        const c = document.createElementNS('http://w3.org', 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', isS ? rb*1.35 : rb); c.setAttribute('fill', col); c.setAttribute('stroke', isS ? '#facc15' : '#fff'); c.setAttribute('stroke-width', Math.max(0.5, 1.3*sc)); gr.appendChild(c);
+        const t = document.createElementNS('http://w3.org', 'text'); t.setAttribute('x', x + rb*1.8); t.setAttribute('y', y + fs*0.35); t.setAttribute('fill', isS ? '#facc15' : '#f1f5f9'); t.setAttribute('font-size', fs); t.setAttribute('font-weight', isS ? '700' : '500'); t.textContent = m.s; gr.appendChild(t);
+        g.appendChild(gr);
       });
     }
-
-    function getDayData(key, idx) {
-      const meta = PLAGES_META[key], firstKey = Object.keys(beachesData).slice(0, 1).pop();
-      const lookup = beachesData[key] ? key : (meta && beachesData[meta.fallback] ? meta.fallback : firstKey);
-      const arr = beachesData[lookup] || Array.of();
-      return arr.slice(idx, idx + 1).pop() || arr.slice(0, 1).pop() || { hs: 1.8, tp: 10.5, waveDir: 280, wind: 20, coeff: 60, totalWater: 3.1, effectivePower: 35, status: "safe" };
+    function drawDet(k) {
+      sel = P[k] ? k : "lacanau_centrale"; const m = P[sel], pv = getD(sel, day), isD = pv.duneAttack || pv.status === 'dune', isC = !isD && (pv.cutEstran || pv.status === 'cut');
+      let bg = `<span class="badge badge-safe">Profil stable</span>`, dg = "Houle et niveau d'eau sous les seuils critiques.";
+      if (isC) { bg = `<span class="badge badge-cut">🔵 Risque de CUT d'estran</span>`; dg = `Puissance effective (${pv.effectivePower} kW/m, houle + vent) : risque d'entaille sur la berme (+${m.b}m NGF).`; }
+      else if (isD) { bg = `<span class="badge badge-dune">🔴 ALERTE ATTAQUE PIED DE DUNE</span>`; dg = `Niveau d'eau max (+${pv.totalWater}m NGF) atteignant le pied de dune (+${m.d}m NGF).`; }
+      const wy = Math.max(20, Math.min(110, 115 - pv.totalWater*16)), by = 115 - m.b*16, dy = 115 - m.d*16;
+      document.getElementById('detail-card').innerHTML = `<h2>${m.n}</h2>${bg}<p style="font-size:0.82rem;color:#cbd5e1;line-height:1.4;">${dg}</p><div class="grid"><div class="metric"><label>Houle (Hs / Tp)</label><strong>${pv.hs} m / ${pv.tp} s</strong></div><div class="metric"><label>Dir. Houle / Vent</label><strong>${pv.waveDir}° / ${pv.wind} km/h</strong></div><div class="metric"><label>Coeff. Marée</label><strong>${pv.coeff}</strong></div><div class="metric"><label>Niveau d'eau max</label><strong>+${pv.totalWater} m NGF</strong></div><div class="metric"><label>Cote Berme</label><strong>+${m.b} m NGF</strong></div><div class="metric"><label>Pied de Dune</label><strong>+${m.d} m NGF</strong></div></div><div class="profile-box"><svg viewBox="0 0 300 130" style="width:100%;height:130px;"><rect x="0" y="${wy}" width="300" height="${130-wy}" fill="rgba(56,189,248,0.35)" /><line x1="0" y1="${wy}" x2="260" y2="${wy}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" /><polygon points="0,125 140,${by} 220,${dy} 260,15 300,15 300,130 0,130" fill="#d97706" opacity="0.85" /><text x="85" y="${by-6}" fill="#38bdf8" font-size="9">Berme +${m.b}m</text><text x="155" y="${dy-6}" fill="#f87171" font-size="9">Dune +${m.d}m</text><text x="8" y="${wy-4}" fill="#7dd3fc" font-size="9">Eau +${pv.totalWater}m</text></svg></div>`;
     }
-
-    function renderZoomBar() {
-      const bar = document.getElementById('zoom-bar'); bar.innerHTML = '';
-      ZOOM_ZONES.forEach(z => {
-        const btn = document.createElement('button');
-        btn.className = 'btn btn-zoom' + (z.id === activeZoomId ? ' active' : '');
-        btn.textContent = z.label;
-        btn.onclick = () => { const p = z.vb.split(' ').map(Number); setViewBox(p.slice(0,1).pop(), p.slice(1,2).pop(), p.slice(2,3).pop(), p.slice(3,4).pop(), z.id); };
-        bar.appendChild(btn);
-      });
-    }
-
-    function renderDateBar() {
-      const bar = document.getElementById('date-bar'); bar.innerHTML = '';
-      datesList.forEach((d, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'btn' + (idx === selectedDayIndex ? ' active' : '');
-        btn.textContent = idx === 0 ? `Aujourd'hui (${formatDateFr(d)})` : formatDateFr(d);
-        btn.onclick = () => { selectedDayIndex = idx; renderDateBar(); renderMarkers(); renderDetail(selectedBeachKey); };
-        bar.appendChild(btn);
-      });
-    }
-
-    function renderMarkers() {
-      const group = document.getElementById('markers-group'); group.innerHTML = '';
-      const scale = currentVB.w / 420, rBase = Math.max(1.7, 5.0 * scale), fontSize = Math.max(3.4, 8.5 * scale);
-      Object.keys(PLAGES_META).forEach(key => {
-        const meta = PLAGES_META[key], prev = getDayData(key, selectedDayIndex), pos = geoToSvg(meta.lat, meta.lon);
-        const isDune = prev.duneAttack || prev.status === 'dune', isCut = !isDune && (prev.cutEstran || prev.status === 'cut');
-        const color = isDune ? '#ef4444' : (isCut ? '#38bdf8' : '#22c55e'), isSelected = key === selectedBeachKey;
-        const g = document.createElementNS('http://w3.org', 'g');
-        g.setAttribute('class', 'plage-point');
-        g.onclick = () => { selectedBeachKey = key; renderMarkers(); renderDetail(key); };
-        if (isDune || isCut) {
-          const ring = document.createElementNS('http://w3.org', 'circle');
-          ring.setAttribute('cx', pos.x); ring.setAttribute('cy', pos.y); ring.setAttribute('r', rBase * 2.2); ring.setAttribute('fill', color); ring.setAttribute('class', 'pulse-ring');
-          g.appendChild(ring);
-        }
-        const circle = document.createElementNS('http://w3.org', 'circle');
-        circle.setAttribute('cx', pos.x); circle.setAttribute('cy', pos.y); circle.setAttribute('r', isSelected ? rBase * 1.35 : rBase);
-        circle.setAttribute('fill', color); circle.setAttribute('stroke', isSelected ? '#facc15' : '#ffffff'); circle.setAttribute('stroke-width', Math.max(0.5, 1.3 * scale));
-        g.appendChild(circle);
-        const label = document.createElementNS('http://w3.org', 'text');
-        label.setAttribute('x', pos.x + rBase * 1.8); label.setAttribute('y', pos.y + fontSize * 0.35);
-        label.setAttribute('fill', isSelected ? '#facc15' : '#f1f5f9'); label.setAttribute('font-size', fontSize); label.setAttribute('font-weight', isSelected ? '700' : '500');
-        label.textContent = meta.short; g.appendChild(label); group.appendChild(g);
-      });
-    }
-
-    function renderDetail(key) {
-      selectedBeachKey = PLAGES_META[key] ? key : "lacanau_centrale";
-      const meta = PLAGES_META[selectedBeachKey], prev = getDayData(selectedBeachKey, selectedDayIndex);
-      const isDune = prev.duneAttack || prev.status === 'dune', isCut = !isDune && (prev.cutEstran || prev.status === 'cut');
-      let badgeHtml = `<span class="badge badge-safe">Profil stable</span>`, diagnostic = "L'énergie de la houle et le niveau d'eau restent sous les seuils critiques d'érosion.";
-      if (isCut) { badgeHtml = `<span class="badge badge-cut">🔵 Risque de CUT d'estran</span>`; diagnostic = `Puissance effective élevée (${prev.effectivePower} kW/m, houle + vent onshore) : risque de creusement de baïne et formation d'une marche sur la berme (+${meta.berme}m NGF).`; }
-      else if (isDune) { badgeHtml = `<span class="badge badge-dune">🔴 ALERTE ATTAQUE PIED DE DUNE</span>`; diagnostic = `Le niveau d'eau extrême (+${prev.totalWater}m NGF) atteint le pied de dune (+${meta.dune}m NGF) : risque d'entaille dunaire.`; }
-      const waterY = Math.max(20, Math.min(110, 115 - (prev.totalWater * 16))), bermeY = 115 - (meta.berme * 16), duneY = 115 - (meta.dune * 16);
-      document.getElementById('detail-card').innerHTML = `<h2>${meta.nom}</h2>${badgeHtml}<p style="font-size:0.82rem;color:#cbd5e1;line-height:1.4;">${diagnostic}</p><div class="grid"><div class="metric"><label>Houle (Hs / Tp)</label><strong>${prev.hs} m / ${prev.tp} s</strong></div><div class="metric"><label>Dir. Houle / Vent</label><strong>${prev.waveDir}° / ${prev.wind} km/h</strong></div><div class="metric"><label>Coeff. Marée</label><strong>${prev.coeff}</strong></div><div class="metric"><label>Niveau d'eau max</label><strong>+${prev.totalWater} m NGF</strong></div><div class="metric"><label>Cote Berme (LiDAR)</label><strong>+${meta.berme} m NGF</strong></div><div class="metric"><label>Pied de Dune (LiDAR)</label><strong>+${meta.dune} m NGF</strong></div></div><div class="profile-box"><div style="font-size:0.74rem;color:#94a3b8;margin-bottom:4px;">Profil en coupe & niveau d'eau prévu</div><svg viewBox="0 0 300 130" style="width:100%;height:130px;"><rect x="0" y="${waterY}" width="300" height="${130 - waterY}" fill="rgba(56,189,248,0.35)" /><line x1="0" y1="${waterY}" x2="260" y2="${waterY}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4" /><polygon points="0,125 140,${bermeY} 220,${duneY} 260,15 300,15 300,130 0,130" fill="#d97706" opacity="0.85" /><circle cx="140" cy="${bermeY}" r="3.5" fill="#38bdf8" /><text x="85" y="${bermeY - 6}" fill="#38bdf8" font-size="9">Berme +${meta.berme}m</text><text x="155" y="${duneY - 6}" fill="#f87171" font-size="9">Dune +${meta.dune}m</text><text x="8" y="${waterY - 4}" fill="#7dd3fc" font-size="9">Eau max +${prev.totalWater}m NGF</text></svg></div>`;
-    }
-
-    let isDragging = false, startX = 0, startY = 0; const wrapper = document.getElementById('map-wrapper');
-    wrapper.addEventListener('mousedown', e => { isDragging = true; startX = e.clientX; startY = e.clientY; });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    wrapper.addEventListener('mousemove', e => { if (!isDragging) return; const dx = (e.clientX - startX) * (currentVB.w / wrapper.clientWidth), dy = (e.clientY - startY) * (currentVB.h / wrapper.clientHeight); startX = e.clientX; startY = e.clientY; setViewBox(currentVB.x - dx, currentVB.y - dy, currentVB.w, currentVB.h, null); });
-    wrapper.addEventListener('wheel', e => { e.preventDefault(); zoomStep(e.deltaY > 0 ? 1.15 : 0.85); }, { passive: false });
-
-    initDefaultForecasts(); renderZoomBar(); renderDateBar(); renderMarkers(); renderDetail(selectedBeachKey);
+    const td = new Date(); D = Array.from({length:7}, (_,i) => { const d = new Date(td); d.setDate(td.getDate()+i); return d.toISOString().slice(0,10); });
+    drawZoom(); drawDates(); drawPts(); drawDet(sel);
     fetch('data_littoral.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(raw => {
-      if (raw && raw.beaches && Object.keys(raw.beaches).length > 0) {
-        beachesData = raw.beaches;
-        const firstKey = Object.keys(beachesData).slice(0, 1).pop();
