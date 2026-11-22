@@ -79,6 +79,30 @@ def get_accurate_tide(dt_utc, port="ferret"):
         hauteur_zh = 2.65 + (coeff - 20) * (1.58 / 100.0)
         pm_ngf = round(hauteur_zh - 2.15, 2)
     return coeff, pm_ngf
+    def get_tide_times(dt_utc, port="ferret"):
+    # Calibré sur les horaires SHOM Cap Ferret (21/11/2026 00h00 UTC = réf. PM1 01h57 locale)
+    ref_utc = datetime(2026, 11, 21, 0, 0, tzinfo=timezone.utc)
+    days_elapsed = (dt_utc.replace(hour=0, minute=0, second=0, microsecond=0) - ref_utc).total_seconds() / 86400.0
+    port_offset_min = 25 if port == "verdon" else (15 if port == "arcachon" else 0)
+
+    # Progression lunaire moyenne : +48.8 min par jour (24.4 min par marée)
+    base_pm1_min = 117.0 + (days_elapsed * 48.8) + port_offset_min
+    step_min = 372.2  # 6h12m entre PM et BM
+
+    pm_list, bm_list = [], []
+    for k in range(-2, 6):
+        t_min = base_pm1_min + k * step_min
+        if 0 <= t_min < 1440:
+            h, m = int(t_min // 60), int(round(t_min % 60))
+            if m == 60:
+                h += 1
+                m = 0
+            label = f"{h:02d}h{m:02d}"
+            if k % 2 == 0:
+                pm_list.append(label)
+            else:
+                bm_list.append(label)
+    return " / ".join(pm_list) or "--", " / ".join(bm_list) or "--"
 
 def send_email_alert(alerts_list):
     api_key = os.environ.get("BREVO_API_KEY", "").strip()
