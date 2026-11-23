@@ -142,6 +142,7 @@ def main():
         for day_idx, d_str in enumerate(dates):
             dt_day = now + timedelta(days=day_idx, hours=12)
             coeff, pm_ngf = get_accurate_tide(dt_day, info["port"])
+            pm_times, bm_times = get_tide_times(dt_day, info["port"])
             h_slice = slice(day_idx * 24, (day_idx + 1) * 24)
 
             if marine and "hourly" in marine:
@@ -193,6 +194,8 @@ def main():
                 "wind": round(wind, 1),
                 "windDir": wind_dir,
                 "coeff": coeff,
+                "pmTimes": pm_times,
+                "bmTimes": bm_times,
                 "totalWater": total_water,
                 "effectivePower": effective_power,
                 "duneAttack": dune_attack,
