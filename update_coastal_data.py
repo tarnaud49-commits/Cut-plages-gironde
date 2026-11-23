@@ -151,7 +151,7 @@ def main():
         for day_idx, d_str in enumerate(dates):
             dt_day = now + timedelta(days=day_idx, hours=12)
             coeff, pm_ngf = get_accurate_tide(dt_day, info["port"])
-            pm_times, bm_times = get_tide_times(dt_day, info["key"])
+            pm_times, bm_times = get_tide_times(dt_day, key)
             h_slice = slice(day_idx * 24, (day_idx + 1) * 24)
 
             if marine and "hourly" in marine:
