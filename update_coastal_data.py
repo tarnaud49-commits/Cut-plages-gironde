@@ -80,10 +80,19 @@ def get_accurate_tide(dt_utc, port="ferret"):
         pm_ngf = round(hauteur_zh - 2.15, 2)
     return coeff, pm_ngf
     
-def get_tide_times(dt_utc, port="ferret"):
+def get_tide_times(dt_utc, beach_key="lacanau_centrale"):
     ref_utc = datetime(2026, 11, 21, 0, 0, tzinfo=timezone.utc)
     days_elapsed = (dt_utc.replace(hour=0, minute=0, second=0, microsecond=0) - ref_utc).total_seconds() / 86400.0
-    port_offset_min = 25 if port == "verdon" else (15 if port == "arcachon" else 0)
+
+    offsets = {
+        "verdon": 35,
+        "soulac": 18, "amélie": 15, "montalivet": 10,
+        "dunes_ferret": 12, "pointe_ferret": 20,
+        "petit_nice": 48, "la_lagune": 38,
+        "salie_nord": 10, "salie_sud": 8, "biscarrosse": 5
+    }
+    port_offset_min = offsets.get(beach_key, 0)
+
     base_pm1_min = 117.0 + (days_elapsed * 48.8) + port_offset_min
     step_min = 372.2
     pm_list, bm_list = [], []
@@ -100,7 +109,7 @@ def get_tide_times(dt_utc, port="ferret"):
             else:
                 bm_list.append(label)
     return " / ".join(pm_list) or "--", " / ".join(bm_list) or "--"
-
+    
 def send_email_alert(alerts_list):
     api_key = os.environ.get("BREVO_API_KEY", "").strip()
     email_to = (os.environ.get("ALERT_EMAIL_TO") or os.environ.get("ALERT_EMAIL") or "").strip()
