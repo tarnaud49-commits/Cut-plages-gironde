@@ -1,23 +1,7 @@
 {
-  "updated_at": "27/11/2026 06:26 UTC",
+  "updated_at": "28/11/2026 06:24 UTC",
   "beaches": {
     "verdon": [
-      {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h25 / 19h49",
-        "bmTimes": "01h13 / 13h37",
-        "totalWater": 3.13,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -113,25 +97,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "soulac": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h08 / 19h32",
-        "bmTimes": "00h56 / 13h20",
-        "totalWater": 3.13,
+        "coeff": 54,
+        "pmTimes": "00h42 / 13h06",
+        "bmTimes": "06h54 / 19h19",
+        "totalWater": 2.44,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "soulac": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -227,25 +211,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "amélie": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h05 / 19h29",
-        "bmTimes": "00h53 / 13h17",
-        "totalWater": 3.13,
+        "coeff": 54,
+        "pmTimes": "00h25 / 12h49",
+        "bmTimes": "06h37 / 19h02",
+        "totalWater": 2.44,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "amélie": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -341,25 +325,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "montalivet": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h00 / 19h24",
-        "bmTimes": "00h48 / 13h12",
-        "totalWater": 3.13,
+        "coeff": 54,
+        "pmTimes": "00h22 / 12h46",
+        "bmTimes": "06h34 / 18h59",
+        "totalWater": 2.44,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "montalivet": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -455,25 +439,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "hourtin": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
+        "coeff": 54,
+        "pmTimes": "00h17 / 12h41",
+        "bmTimes": "06h29 / 18h54",
+        "totalWater": 2.44,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "hourtin": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -565,6 +549,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -573,22 +573,6 @@
     ],
     "carcans": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -679,6 +663,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -687,22 +687,6 @@
     ],
     "lacanau_nord": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -793,6 +777,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -801,22 +801,6 @@
     ],
     "lacanau_centrale": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -907,6 +891,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -915,22 +915,6 @@
     ],
     "lacanau_sud": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1021,6 +1005,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1029,22 +1029,6 @@
     ],
     "lacanau_ecureuils": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1135,6 +1119,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1143,22 +1143,6 @@
     ],
     "lacanau_supersud": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1249,6 +1233,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1257,22 +1257,6 @@
     ],
     "lacanau_lion": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1363,6 +1347,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1371,22 +1371,6 @@
     ],
     "lacanau_alexandre": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1477,6 +1461,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1485,22 +1485,6 @@
     ],
     "porge_gressier": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1591,6 +1575,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1599,22 +1599,6 @@
     ],
     "porge_centrale": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1705,6 +1689,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1713,22 +1713,6 @@
     ],
     "porge_jenny": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1819,6 +1803,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1827,22 +1827,6 @@
     ],
     "grand_crohot": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -1933,6 +1917,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -1941,22 +1941,6 @@
     ],
     "truc_vert": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -2047,6 +2031,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -2055,22 +2055,6 @@
     ],
     "garonne": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -2161,6 +2145,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -2169,22 +2169,6 @@
     ],
     "torchere": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -2275,6 +2259,22 @@
         "pmTimes": "11h43",
         "bmTimes": "05h30 / 17h55",
         "totalWater": 2.18,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
@@ -2283,22 +2283,6 @@
     ],
     "horizon": [
       {
-        "date": "2026-11-27",
-        "hs": 1.6,
-        "tp": 10.5,
-        "waveDir": 280,
-        "wind": 20.0,
-        "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h50 / 19h14",
-        "bmTimes": "00h38 / 13h02",
-        "totalWater": 2.82,
-        "effectivePower": 29,
-        "duneAttack": false,
-        "cutEstran": false,
-        "status": "safe"
-      },
-      {
         "date": "2026-11-28",
         "hs": 1.6,
         "tp": 10.5,
@@ -2393,25 +2377,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "dunes_ferret": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h02 / 19h26",
-        "bmTimes": "00h50 / 13h14",
-        "totalWater": 2.82,
+        "coeff": 54,
+        "pmTimes": "00h07 / 12h31",
+        "bmTimes": "06h19 / 18h44",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "dunes_ferret": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -2507,25 +2491,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "pointe_ferret": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h10 / 19h34",
-        "bmTimes": "00h58 / 13h22",
-        "totalWater": 2.82,
+        "coeff": 54,
+        "pmTimes": "00h19 / 12h43",
+        "bmTimes": "06h31 / 18h56",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "pointe_ferret": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -2621,25 +2605,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "petit_nice": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h38 / 20h02",
-        "bmTimes": "01h26 / 13h50",
-        "totalWater": 2.93,
+        "coeff": 54,
+        "pmTimes": "00h27 / 12h51",
+        "bmTimes": "06h39 / 19h04",
+        "totalWater": 2.29,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "petit_nice": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -2735,25 +2719,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "la_lagune": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h28 / 19h52",
-        "bmTimes": "01h16 / 13h40",
-        "totalWater": 2.93,
+        "coeff": 54,
+        "pmTimes": "00h55 / 13h19",
+        "bmTimes": "07h07 / 19h32",
+        "totalWater": 2.38,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "la_lagune": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -2849,25 +2833,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "salie_nord": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "07h00 / 19h24",
-        "bmTimes": "00h48 / 13h12",
-        "totalWater": 2.93,
+        "coeff": 54,
+        "pmTimes": "00h45 / 13h09",
+        "bmTimes": "06h57 / 19h22",
+        "totalWater": 2.38,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "salie_nord": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -2963,25 +2947,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "salie_sud": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h58 / 19h22",
-        "bmTimes": "00h46 / 13h10",
-        "totalWater": 2.93,
+        "coeff": 54,
+        "pmTimes": "00h17 / 12h41",
+        "bmTimes": "06h29 / 18h54",
+        "totalWater": 2.38,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "salie_sud": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -3077,25 +3061,25 @@
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      }
-    ],
-    "biscarrosse": [
+      },
       {
-        "date": "2026-11-27",
+        "date": "2026-12-04",
         "hs": 1.6,
         "tp": 10.5,
         "waveDir": 280,
         "wind": 20.0,
         "windDir": 270,
-        "coeff": 88,
-        "pmTimes": "06h55 / 19h19",
-        "bmTimes": "00h43 / 13h07",
-        "totalWater": 2.93,
+        "coeff": 54,
+        "pmTimes": "00h15 / 12h39",
+        "bmTimes": "06h27 / 18h52",
+        "totalWater": 2.38,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
         "status": "safe"
-      },
+      }
+    ],
+    "biscarrosse": [
       {
         "date": "2026-11-28",
         "hs": 1.6,
@@ -3187,6 +3171,22 @@
         "pmTimes": "11h48",
         "bmTimes": "05h35 / 18h00",
         "totalWater": 2.27,
+        "effectivePower": 29,
+        "duneAttack": false,
+        "cutEstran": false,
+        "status": "safe"
+      },
+      {
+        "date": "2026-12-04",
+        "hs": 1.6,
+        "tp": 10.5,
+        "waveDir": 280,
+        "wind": 20.0,
+        "windDir": 270,
+        "coeff": 54,
+        "pmTimes": "00h12 / 12h36",
+        "bmTimes": "06h24 / 18h49",
+        "totalWater": 2.38,
         "effectivePower": 29,
         "duneAttack": false,
         "cutEstran": false,
